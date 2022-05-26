@@ -1,5 +1,7 @@
 # cord-fe-challenge-2022
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/843d8551-2064-453d-b340-0b56f14a4ad5/deploy-status)](https://app.netlify.com/sites/idyllic-crostata-e3b5be/deploys)
+
 ## cord Coding Challenge (Front-end)
 
 ### Introduction 
