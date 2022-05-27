@@ -8,7 +8,7 @@ import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
 export default class Discover extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -33,28 +33,52 @@ export default class Discover extends React.Component {
       ]
     };
   }
+  componentDidMount() {
+    this.loadAllGenres();
+    this.loadPopularMovies();
+  }
+
+  // LISTS POPULAR MOVIES
+  // WHEN THE PAGE LOADS AND STORES 
+  // THE RESULTS IN THE STATE.
+  loadPopularMovies = async () => {
+    const server_response = await fetcher.getpopularMovies();
+    console.log(server_response)
+    this.setState({
+      results: server_response.data.results,
+      totalCount: server_response.data.total_results
+    })
+  }
+
+  // LISTS ALL GENRES
+  loadAllGenres = async () => {
+    const server_response = await fetcher.getAllGenres();
+    this.setState({
+      genreOptions: server_response.data.genres,
+    })
+  }
 
   // TODO: Preload and set the popular movies and movie genres when page loads
 
   // TODO: Update search results based on the keyword and year inputs
 
-  render () {
+  render() {
     const { genreOptions, languageOptions, ratingOptions, totalCount, results } = this.state;
 
     return (
       <DiscoverWrapper>
         <MobilePageTitle>Discover</MobilePageTitle> {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
-        <TotalCount>{totalCount} results</TotalCount>
+        <TotalCount>{totalCount.toLocaleString()} results</TotalCount>
         <MovieFilters>
-          <SearchFilters 
-            genres={genreOptions} 
-            ratings={ratingOptions}  
+          <SearchFilters
+            genres={genreOptions}
+            ratings={ratingOptions}
             languages={languageOptions}
             searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
           />
         </MovieFilters>
         <MovieResults>
-          <MovieList 
+          <MovieList
             movies={results || []}
             genres={genreOptions || []}
           />
