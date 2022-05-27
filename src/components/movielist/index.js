@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import MovieItem from '../movieitem';
 
-export default function MovieList ({ movies, genres }) {
+export default function MovieList({ movies, genres }) {
   return (
     <MoviesWrapper>
-      { movies.map(movie => <MovieItem key={movie.id} movie={movie} genres={genres} />)}
+      {movies.map(movie => <MovieItem key={movie.id} movie={movie} genres={genres} />)}
     </MoviesWrapper>
   )
 }
