@@ -7,6 +7,8 @@ import * as fetcher from "../../fetcher";
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
+import menu from "../../images/hamburger-menu.svg"
+
 export default class Discover extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,9 @@ export default class Discover extends React.Component {
         { id: 'PO', name: 'Polish' }
       ],
       backUpResults: [],
-      backUpCount: "0"
+      backUpCount: "0",
+      info: "",
+      loading: ""
     }
 
   }
@@ -45,35 +49,63 @@ export default class Discover extends React.Component {
   // WHEN THE PAGE LOADS AND STORES 
   // THE RESULTS IN THE STATE.
   loadPopularMovies = async () => {
-    const server_response = await fetcher.getpopularMovies();
     this.setState({
-      results: server_response.data.results,
-      totalCount: server_response.data.total_results
+      loading: true,
     })
+    const server_response = await fetcher.getpopularMovies();
+    if (server_response.status === 200) {
+      this.setState({
+        loading: false,
+        results: server_response.data.results,
+        totalCount: server_response.data.total_results
+      })
+    } else {
+      this.setState({
+        info: server_response.details.message
+      })
+    }
   }
 
   // LISTS ALL GENRES
   loadAllGenres = async () => {
     const server_response = await fetcher.getAllGenres();
-    this.setState({
-      genreOptions: server_response.data.genres,
-    })
+    if (server_response.status === 200) {
+      this.setState({
+        genreOptions: server_response.data.genres,
+      })
+    } else {
+      this.setState({
+        genreOptions: []
+      })
+    }
   }
 
   // RETRUNS SEARCHED MOVIES
   searchMovies = async (keyword, year) => {
-    const server_response = await fetcher.searchAllMovies(keyword, year);
     this.setState({
-      results: server_response.data.results,
-      totalCount: server_response.data.total_results
+      loading: true,
     })
+    const server_response = await fetcher.searchAllMovies(keyword, year);
+    if (server_response.data.results.length === 0) {
+      this.setState({
+        loading: false,
+        info: "No records found for this search"
+      })
+    } else {
+      this.setState({
+        loading: false,
+        info: "",
+        results: server_response.data.results,
+        totalCount: server_response.data.total_results
+      })
+    }
   }
 
   // ONCHANGE QUERY TO SEARCH FOR A MOVIE
   onChangeSearch = (value, id) => {
     console.log(value)
     console.log("value serch")
-    if (this.state.backUpResults.length == 0) {
+    if (this.state.backUpResults.length === 0) {
       this.setState({
         backUpResults: this.state.results,
         backUpCount: this.state.totalCount
@@ -93,17 +125,15 @@ export default class Discover extends React.Component {
   }
 
   onSearchDate = (value, id) => {
-    console.log(value)
-    console.log("value date")
 
-    if (this.state.backUpResults.length == 0) {
+    if (this.state.backUpResults.length === 0) {
       this.setState({
         backUpResults: this.state.results,
         backUpCount: this.state.totalCount
       })
     }
     if (value.length > 0) {
-      if (value.length == 4) {
+      if (value.length === 4) {
         this.setState({
           year: value
         }, () => this.searchMovies(this.state.keyword, value));
@@ -128,7 +158,16 @@ export default class Discover extends React.Component {
 
     return (
       <DiscoverWrapper>
-        <MobilePageTitle>Discover</MobilePageTitle> {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
+        <MobileHeader>
+          <HamburgerMenu>
+            <img src={menu} alt="menu" />
+          </HamburgerMenu>
+
+          <MobilePageTitle>Discover</MobilePageTitle>
+        </MobileHeader>
+
+        {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
+
         <TotalCount>{totalCount.toLocaleString()} results</TotalCount>
         <MovieFilters>
           <SearchFilters
@@ -140,7 +179,12 @@ export default class Discover extends React.Component {
             onSearchDate={this.onSearchDate}
           />
         </MovieFilters>
+
+
+
         <MovieResults>
+          <p>{this.state.info}</p>
+          {this.state.loading && <p>Loading...</p>}
           <MovieList
             movies={results || []}
             genres={genreOptions || []}
@@ -153,23 +197,63 @@ export default class Discover extends React.Component {
 
 const DiscoverWrapper = styled.main`
   padding: 35px;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    padding: 25px;
+  }
 `
 
 const MovieResults = styled.div`
   display: inline-block;
   width: calc(100% - 395px);
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    width: 100%;
+  }
 `
 
 const MovieFilters = styled.div`
   width: 380px;
   float: right;
   margin-top: 15px;
+  margin-right: 35px;
+  position: fixed;
+  right: 0;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: none;
+  }
+`
+
+const MobileHeader = styled.div`
+  display: flex;
+  text-align: center;
+  align-items: center;
 `
 
 const MobilePageTitle = styled.h1`
   display: none;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: block;
+    margin-left:30px;
+  }
 `
+
+const HamburgerMenu = styled.div`
+  width:55px;
+  cursor:pointer;
+  display: none;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: block;
+    border: 1px solid red;
+    width:45px;
+    cursor:pointer;
+  }
+`;
 
 const TotalCount = styled.strong`
   display: block;
 `
+

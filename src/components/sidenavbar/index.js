@@ -39,7 +39,11 @@ const SideNavBarCont = styled.div`
   height: 100%;
   background-color: ${colors.sideNavBar};
   color: white;
-`
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: none;
+  }
+`;
 
 const SectionsStyles = css`
   position: relative;

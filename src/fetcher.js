@@ -10,20 +10,24 @@ const apiKey = "dae1bc94f2be7c7a6e80f5ca557ae55f";
 // AXIOS REQUEST TO FETCH ALL POPULAR 
 // MOVIES FROM THE MOVIESDB API
 export const getpopularMovies = async () => {
+
     const endPoint = "/movie/popular"
     const pageNumber = 1;
+
     try {
         let response = await axios.get(
             baseUrl + endPoint + "?api_key=" +
             apiKey + "&language=en-US&page=" +
             pageNumber
         )
+
         return response
     } catch (error) {
+        console.log(error)
         let connError = {
             'status': 'conn',
             'details': {
-                'message': 'Contacting server....',
+                'message': 'Oops!!! Failed to reach the server. Please check your internet connection!',
                 'content': false
             }
         }
@@ -44,6 +48,7 @@ export const getAllGenres = async () => {
             "?api_key=" + apiKey +
             "&language=en-US&page"
         );
+        console.log(response)
         return response;
     } catch (error) {
         let connError = {
@@ -60,6 +65,7 @@ export const getAllGenres = async () => {
 // API REQUEST TO SEARCH
 // FROM THE MOVIESDB API
 export const searchAllMovies = async (keyword, year) => {
+
     console.log(keyword)
     console.log(year)
 
