@@ -33,8 +33,11 @@ export const getpopularMovies = async () => {
 }
 
 // API REQUEST TO FETCH ALL GENRES
+// FROM THE MOVIESDB API
 export const getAllGenres = async () => {
+
     const endPoint = "/genre/movie/list"
+
     try {
         const response = await axios.get(
             baseUrl + endPoint +
@@ -50,6 +53,25 @@ export const getAllGenres = async () => {
                 'content': false
             }
         }
+        return connError;
+    }
+}
+
+// API REQUEST TO SEARCH
+// FROM THE MOVIESDB API
+export const searchAllMovies = async (keyword, year) => {
+    console.log(keyword)
+    console.log(year)
+
+    const endPoint = "/search/movie"
+    const pageNumber = 1;
+
+    try {
+        const response = await axios.get(baseUrl + endPoint + "?api_key=" + apiKey + "&language=en-US&query=" + keyword + "& page=" + pageNumber + "&year=" + year);
+        return response;
+
+    } catch (error) {
+        let connError = { 'status': 'conn', 'details': { 'message': 'Contacting server....', 'content': false } }
         return connError;
     }
 }

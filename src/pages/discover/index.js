@@ -30,8 +30,11 @@ export default class Discover extends React.Component {
         { id: 'EN', name: 'English' },
         { id: 'RU', name: 'Russian' },
         { id: 'PO', name: 'Polish' }
-      ]
-    };
+      ],
+      backUpResults: [],
+      backUpCount: "0"
+    }
+
   }
   componentDidMount() {
     this.loadAllGenres();
@@ -43,7 +46,6 @@ export default class Discover extends React.Component {
   // THE RESULTS IN THE STATE.
   loadPopularMovies = async () => {
     const server_response = await fetcher.getpopularMovies();
-    console.log(server_response)
     this.setState({
       results: server_response.data.results,
       totalCount: server_response.data.total_results
@@ -57,6 +59,65 @@ export default class Discover extends React.Component {
       genreOptions: server_response.data.genres,
     })
   }
+
+  // RETRUNS SEARCHED MOVIES
+  searchMovies = async (keyword, year) => {
+    const server_response = await fetcher.searchAllMovies(keyword, year);
+    this.setState({
+      results: server_response.data.results,
+      totalCount: server_response.data.total_results
+    })
+  }
+
+  // ONCHANGE QUERY TO SEARCH FOR A MOVIE
+  onChangeSearch = (value, id) => {
+    console.log(value)
+    console.log("value serch")
+    if (this.state.backUpResults.length == 0) {
+      this.setState({
+        backUpResults: this.state.results,
+        backUpCount: this.state.totalCount
+      })
+    }
+    if (value.length > 0) {
+      this.setState({
+        keyword: value
+      }, () => this.searchMovies(value, this.state.year));
+    } else {
+      this.setState({
+        results: this.state.backUpResults,
+        totalCount: this.state.backUpCount
+      })
+    }
+
+  }
+
+  onSearchDate = (value, id) => {
+    console.log(value)
+    console.log("value date")
+
+    if (this.state.backUpResults.length == 0) {
+      this.setState({
+        backUpResults: this.state.results,
+        backUpCount: this.state.totalCount
+      })
+    }
+    if (value.length > 0) {
+      if (value.length == 4) {
+        this.setState({
+          year: value
+        }, () => this.searchMovies(this.state.keyword, value));
+      }
+    } else {
+      this.setState({
+        results: this.state.backUpResults,
+        totalCount: this.state.backUpCount
+      })
+    }
+  }
+
+
+
 
   // TODO: Preload and set the popular movies and movie genres when page loads
 
@@ -75,6 +136,8 @@ export default class Discover extends React.Component {
             ratings={ratingOptions}
             languages={languageOptions}
             searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
+            onSearch={this.onChangeSearch}
+            onSearchDate={this.onSearchDate}
           />
         </MovieFilters>
         <MovieResults>
@@ -94,11 +157,11 @@ const DiscoverWrapper = styled.main`
 
 const MovieResults = styled.div`
   display: inline-block;
-  width: calc(100% - 295px);
+  width: calc(100% - 395px);
 `
 
 const MovieFilters = styled.div`
-  width: 280px;
+  width: 380px;
   float: right;
   margin-top: 15px;
 `

@@ -7,27 +7,45 @@ import SearchBar from "../../components/searchbar";
 
 import SearchIcon from "../../images/search-icon-yellow.png";
 import YearIcon from "../../images/year-icon.png";
+import AccordionFilter from "../accordionfilter";
 
-export default function SearchFilters({ genres, ratings, languages, onSearch }) {
+export default function SearchFilters({ genres, ratings, languages, onSearch, onSearchDate }) {
+
   return (
     <FiltersWrapper>
       <SearchFiltersCont className="search_inputs_cont" marginBottom>
         <SearchBar
-          id="keyword_search_input" 
+          id="keyword_search_input"
           type="text"
-          icon={{ src: SearchIcon, alt: 'Magnifying glass' }} 
+          icon={{ src: SearchIcon, alt: 'Magnifying glass' }}
           placeholder="Search for movies"
+          onChange={onSearch}
         />
         <SearchBar
-          id="year_search_input" 
+          id="year_search_input"
           type="number"
-          icon={{ src: YearIcon, alt: 'Calendar icon' }} 
+          icon={{ src: YearIcon, alt: 'Calendar icon' }}
           placeholder="Year of release"
+          onChange={onSearchDate}
         />
       </SearchFiltersCont>
       <SearchFiltersCont>
         <CategoryTitle>Movies</CategoryTitle>
+
         {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
+
+        <AccordionFilter
+          title="Select genre(s)"
+          genres={genres}
+        />
+        <AccordionFilter
+          title="Select min. vote"
+          genres=""
+        />
+        <AccordionFilter
+          title="Select language"
+          genres=""
+        />
       </SearchFiltersCont>
     </FiltersWrapper>
   );
