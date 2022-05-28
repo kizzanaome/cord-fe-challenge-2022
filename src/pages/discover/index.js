@@ -199,7 +199,7 @@ const DiscoverWrapper = styled.main`
   padding: 35px;
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    padding: 25px;
+    padding: 0 25px;
   }
 `
 

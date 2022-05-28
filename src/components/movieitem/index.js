@@ -24,6 +24,7 @@ export default function MovieItem({ movie, genres }) {
           <Rating>{movie.vote_average}</Rating>
         </Header>
         <Genre>
+          <div>
           {genres.map(genre =>
             movie.genre_ids.map((genre_id, key) =>
               <>
@@ -42,9 +43,9 @@ export default function MovieItem({ movie, genres }) {
                   </>
                 }
               </>
-
             )
           )}
+          </div>
         </Genre>
         <Description>
           {movie.overview.length > 500
@@ -55,9 +56,9 @@ export default function MovieItem({ movie, genres }) {
           }
         </Description>
         <MobileDescription>
-          {movie.overview.length > 100
+          {movie.overview.length > 75
             ?
-            `${movie.overview.substring(0, 100)}...`
+            `${movie.overview.substring(0, 75)}...`
             :
             movie.overview
           }
@@ -121,22 +122,41 @@ const Rating = styled.div`
   font-size: 19px;
   font-weight: bold;
   border-radius: 3px;
-  background-color: ${color.primaryColor}
+  background-color: ${color.primaryColor};
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    width: 30px;
+    height: 18px;
+    font-size: 15px;
+  }
 `;
 
 const Genre = styled.div`
-  display: flex;
-  margin: 0;
-  padding: 0;
+  // width: 100px;
+  // overflow-x: scroll;
 
-  p {
-    margin: 5px 7px 0 0;
-    color: ${color.primaryColor};
-    font-weight: bold;
+  div {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    // width: 100%;
+
+    p {
+      margin: 5px 7px 0 0;
+      color: ${color.primaryColor};
+      font-weight: bold;
+    }
   }
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    font-size: 7px;
+    width: 150px;
+    overflow-x: scroll;
+    font-size: 8px;
+    // border: 1px solid red;
+
+    div {
+      width: 100vw;
+    }
   }
 `;
 
@@ -147,7 +167,6 @@ const MobileDescription = styled.p`
       font-size: 12px;
       color:black;
     }
-
 `
 
 const Description = styled.p`
