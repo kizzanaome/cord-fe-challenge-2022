@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from 'styled-components';
 
 import * as color from "../../colors";
@@ -7,6 +7,8 @@ import placeholder from "../../images/placeholder_leg.png"
 export default function MovieItem({ movie, genres }) {
 
   const imageUrl = "https://image.tmdb.org/t/p/w200/";
+
+  const [readMore, setReadMore] = useState(false);
 
   return (
     // TODO: Complete the MovieItem component
@@ -24,10 +26,9 @@ export default function MovieItem({ movie, genres }) {
           <Rating>{movie.vote_average}</Rating>
         </Header>
         <Genre>
-          <div 
-            className={`${ 
-              movie.genre_ids.length > 3 ? 'scrollEnable' : movie.genre_ids.length > 5 ? 'scrollerEnable' : '' 
-            }`}
+          <div
+            className={`${movie.genre_ids.length > 3 ? 'scrollEnable' : movie.genre_ids.length > 5 ? 'scrollerEnable' : ''
+              }`}
           >
             {genres.map(genre =>
               movie.genre_ids.map((genre_id, key) =>
@@ -37,7 +38,7 @@ export default function MovieItem({ movie, genres }) {
                       {key !== (movie.genre_ids.length - 1)
                         ?
                         <>
-                        <p key={genre_id}> {genre.name}  |  </p>
+                          <p key={genre_id}> {genre.name}  |  </p>
                         </>
                         :
                         <>
@@ -52,19 +53,55 @@ export default function MovieItem({ movie, genres }) {
           </div>
         </Genre>
         <Description>
-          {movie.overview.length > 500
+          {movie.overview.length > 370
             ?
-            `${movie.overview.substring(0, 500)}...`
+            <>
+              {!readMore
+                ?
+                (
+                  <span >{movie.overview.substring(0, 370)}
+                    <span className="readmore" onClick={() => setReadMore(true)} >
+                      ... ReadMore
+                    </span>
+                  </span>
+                )
+                :
+                <span>{movie.overview}
+                  <span className="readmore" onClick={() => setReadMore(false)}>
+                    ReadLess
+                  </span>
+                </span>
+              }
+            </>
             :
-            movie.overview
+            <span>{movie.overview}</span >
           }
+
         </Description>
         <MobileDescription>
           {movie.overview.length > 75
             ?
-            `${movie.overview.substring(0, 75)}...`
+            <>
+              {!readMore
+                ?
+                (
+                  <span>
+                    {movie.overview.substring(0, 75)}
+                    <span className="readmore" onClick={() => setReadMore(true)} >
+                      ... ReadMore
+                    </span>
+                  </span>
+                )
+                :
+                <span>{movie.overview}
+                  <span className="readmore" onClick={() => setReadMore(false)}>
+                    ReadLess
+                  </span >
+                </span>
+              }
+            </>
             :
-            movie.overview
+            <span>{movie.overview}</span >
           }
         </MobileDescription>
         <Date>{movie.release_date}</Date>
@@ -72,6 +109,7 @@ export default function MovieItem({ movie, genres }) {
     </MovieItemWrapper>
   )
 }
+
 const MovieItemWrapper = styled.div`
   position: relative;
   background-color: white;
@@ -85,9 +123,17 @@ const LeftCont = styled.div`
   display: inline-block;
   margin-right: 20px;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     img{
       width:100px;
+    }
+  }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    img{
+      width:120px;
     }
   }
 `;
@@ -108,8 +154,16 @@ const Title = styled.h2`
   font-size: 1.4;
   margin: 0;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     font-size: 18px;
+    font-weight: 900;
+    color:black;
+  }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    font-size: 20px;
     font-weight: 900;
     color:black;
   }
@@ -128,10 +182,18 @@ const Rating = styled.div`
   border-radius: 3px;
   background-color: ${color.primaryColor};
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     width: 30px;
     height: 18px;
     font-size: 15px;
+  }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    width: 33px;
+    height: 21px;
+    font-size: 17px;
   }
 `;
 
@@ -149,7 +211,8 @@ const Genre = styled.div`
     }
   }
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     width: 150px;
     overflow-x: scroll;
     font-size: 9px;
@@ -171,25 +234,72 @@ const Genre = styled.div`
       display: none !important;
     }
   }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    width: 200px;
+    overflow-x: scroll;
+    font-size: 12px;
+
+    .scrollEnable {
+      width: 80vw;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    .scrollerEnable {
+      width: 90vw;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    .scrollEnable::-webkit-scrollbar,
+    .scrollerEnable::-webkit-scrollbar {
+      display: none !important;
+    }
+  }
 `;
 
 const MobileDescription = styled.p`
   display : none;
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display:block;
-      font-size: 12px;
-      color:black;
-    }
+    font-size: 12px;
+    color:${color.fontColor};
+  }
+
+  .readmore{
+    font-size: 11px;
+    color:#0000EE;
+    cursor:pointer;
+    margin-left:3px;
+  }
 `
 
 const Description = styled.p`
   margin: 17px 0 0 0;
   padding: 0;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .readmore{
+    color:#0000EE;
+    cursor:pointer;
+    margin-left:3px;
+  }
+
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: none;
     font-size: 12px;
-    color:black;
+    color:${color.fontColor};
+  }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    display:block;
+    font-size: 13px;
+    color:${color.fontColor};
   }
 `;
 
@@ -199,8 +309,14 @@ const Date = styled.p`
   margin: 0px;
   color: ${color.primaryColor};
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     font-size: 11px;
+  }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    font-size: 12px;
   }
 `;
 

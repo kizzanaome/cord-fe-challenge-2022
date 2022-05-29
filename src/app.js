@@ -6,17 +6,17 @@ import SideNavBar from "./components/sidenavbar";
 
 import Discover from "./pages/discover";
 
-import './css/app.scss'; 
+import './css/app.scss';
 
 export default class App extends React.Component {
-  render () {
+  render() {
     return (
       <Router>
         <PageContainer>
           <SideNavBar {...this.props} />
           <ContentWrapper>
             <Switch>
-              <Route path="/discover" component={Discover} {...this.props}/>
+              <Route path="/discover" component={Discover} {...this.props} />
             </Switch>
           </ContentWrapper>
         </PageContainer>
@@ -29,7 +29,8 @@ export default class App extends React.Component {
 const ContentWrapper = styled.main`
   padding-left: 280px;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone and tablet responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     padding-left: 0;
   }
 `

@@ -73,7 +73,7 @@ export const searchAllMovies = async (keyword, year) => {
     const pageNumber = 1;
 
     try {
-        const response = await axios.get(baseUrl + endPoint + "?api_key=" + apiKey + "&language=en-US&query=" + keyword + "& page=" + pageNumber + "&year=" + year);
+        const response = await axios.get(baseUrl + endPoint + "?api_key=" + apiKey + "&language=en-US&query=" + keyword + "&page=" + pageNumber + "&year=" + year);
         return response;
 
     } catch (error) {

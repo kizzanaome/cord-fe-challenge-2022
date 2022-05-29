@@ -46,7 +46,7 @@ export default class Discover extends React.Component {
     }
 
   }
-  
+
   componentDidMount() {
     this.loadAllGenres();
     this.loadPopularMovies();
@@ -183,7 +183,7 @@ export default class Discover extends React.Component {
           />
 
           <div className="filterIcon">
-            <img src={filter} alt="menu" />
+            <img src={filter} alt="menu"/>
           </div>
         </MobileSearchSection>
 
@@ -217,7 +217,8 @@ export default class Discover extends React.Component {
 const DiscoverWrapper = styled.main`
   padding: 35px;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone and tablet responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     padding: 0 25px;
   }
 `
@@ -226,8 +227,14 @@ const MovieResults = styled.div`
   display: inline-block;
   width: calc(100% - 395px);
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     width: 100%;
+  }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    width: calc(100% - 295px);
   }
 `
 
@@ -239,16 +246,14 @@ const MovieFilters = styled.div`
   position: fixed;
   right: 0;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: none;
-    float: none;
-    // position: none;
-    width: 100%;
-    float: none;
-    margin: 0;
-    // margin-right: 35px;
-    // position: fixed;
-    left: 0;
+  }
+
+  // /* --- tablet responsiveness --- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+    width: 280px;
   }
 `
 
@@ -261,7 +266,8 @@ const MobileHeader = styled.div`
 const MobilePageTitle = styled.h1`
   display: none;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     display: block;
     margin-left:60px;
     font-size: 30px;
@@ -272,7 +278,8 @@ const MobilePageTitle = styled.h1`
 const MobileSearchSection = styled.div`
   display: none;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  // /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: flex;
     margin: 7px 0 45px 0;
     justify-content: space-between;
