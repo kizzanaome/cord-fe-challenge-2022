@@ -7,6 +7,13 @@ import * as fetcher from "../../fetcher";
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
+import menu from "../../images/menu.png"
+import SearchIcon from "../../images/search-icon-yellow.png";
+
+import filter from "../../images/filter-icon.png";
+
+import SearchBar from "../../components/searchbar";
+
 export default class Discover extends React.Component {
   constructor(props) {
     super(props);
@@ -30,9 +37,16 @@ export default class Discover extends React.Component {
         { id: 'EN', name: 'English' },
         { id: 'RU', name: 'Russian' },
         { id: 'PO', name: 'Polish' }
-      ]
-    };
+      ],
+      backUpResults: [],
+      backUpCount: "0",
+      info: "",
+      loading: "",
+
+    }
+
   }
+  
   componentDidMount() {
     this.loadAllGenres();
     this.loadPopularMovies();
@@ -42,21 +56,105 @@ export default class Discover extends React.Component {
   // WHEN THE PAGE LOADS AND STORES 
   // THE RESULTS IN THE STATE.
   loadPopularMovies = async () => {
-    const server_response = await fetcher.getpopularMovies();
-    console.log(server_response)
     this.setState({
-      results: server_response.data.results,
-      totalCount: server_response.data.total_results
+      loading: true,
     })
+    const server_response = await fetcher.getpopularMovies();
+    if (server_response.status === 200) {
+      this.setState({
+        loading: false,
+        results: server_response.data.results,
+        totalCount: server_response.data.total_results
+      })
+    } else {
+      this.setState({
+        info: server_response.details.message
+      })
+    }
   }
 
   // LISTS ALL GENRES
   loadAllGenres = async () => {
     const server_response = await fetcher.getAllGenres();
-    this.setState({
-      genreOptions: server_response.data.genres,
-    })
+    if (server_response.status === 200) {
+      this.setState({
+        genreOptions: server_response.data.genres,
+      })
+    } else {
+      this.setState({
+        genreOptions: []
+      })
+    }
   }
+
+  // RETRUNS SEARCHED MOVIES
+  searchMovies = async (keyword, year) => {
+    this.setState({
+      loading: true,
+    })
+    const server_response = await fetcher.searchAllMovies(keyword, year);
+    if (server_response.data.results.length === 0) {
+      this.setState({
+        loading: false,
+        info: "No records found for this search"
+      })
+    } else {
+      this.setState({
+        loading: false,
+        info: "",
+        results: server_response.data.results,
+        totalCount: server_response.data.total_results
+      })
+    }
+  }
+
+  // ONCHANGE QUERY TO SEARCH FOR A MOVIE
+  onChangeSearch = (value, id) => {
+    console.log(value)
+    console.log("value serch")
+    if (this.state.backUpResults.length === 0) {
+      this.setState({
+        backUpResults: this.state.results,
+        backUpCount: this.state.totalCount
+      })
+    }
+    if (value.length > 0) {
+      this.setState({
+        keyword: value
+      }, () => this.searchMovies(value, this.state.year));
+    } else {
+      this.setState({
+        results: this.state.backUpResults,
+        totalCount: this.state.backUpCount
+      })
+    }
+
+  }
+
+  onSearchDate = (value, id) => {
+
+    if (this.state.backUpResults.length === 0) {
+      this.setState({
+        backUpResults: this.state.results,
+        backUpCount: this.state.totalCount
+      })
+    }
+    if (value.length > 0) {
+      if (value.length === 4) {
+        this.setState({
+          year: value
+        }, () => this.searchMovies(this.state.keyword, value));
+      }
+    } else {
+      this.setState({
+        results: this.state.backUpResults,
+        totalCount: this.state.backUpCount
+      })
+    }
+  }
+
+
+
 
   // TODO: Preload and set the popular movies and movie genres when page loads
 
@@ -67,17 +165,45 @@ export default class Discover extends React.Component {
 
     return (
       <DiscoverWrapper>
-        <MobilePageTitle>Discover</MobilePageTitle> {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
-        <TotalCount>{totalCount.toLocaleString()} results</TotalCount>
+        <MobileHeader>
+          {/* <HamburgerMenu onClick={() => this.openNavBar()}>
+            <img src={menu} alt="menu" />
+          </HamburgerMenu> */}
+
+          <MobilePageTitle>Discover</MobilePageTitle>
+        </MobileHeader>
+
+        <MobileSearchSection>
+          <SearchBar
+            id="keyword_search_input"
+            type="text"
+            icon={{ src: SearchIcon, alt: 'Magnifying glass' }}
+            placeholder="Search for movies"
+            onChange={this.onChangeSearch}
+          />
+
+          <div className="filterIcon">
+            <img src={filter} alt="menu" />
+          </div>
+        </MobileSearchSection>
+
+        {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
+
+        <TotalCount>{totalCount.toLocaleString()} movies</TotalCount>
         <MovieFilters>
           <SearchFilters
             genres={genreOptions}
             ratings={ratingOptions}
             languages={languageOptions}
             searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
+            onSearch={this.onChangeSearch}
+            onSearchDate={this.onSearchDate}
           />
         </MovieFilters>
+
         <MovieResults>
+          <p>{this.state.info}</p>
+          {this.state.loading && <p>Loading...</p>}
           <MovieList
             movies={results || []}
             genres={genreOptions || []}
@@ -90,23 +216,84 @@ export default class Discover extends React.Component {
 
 const DiscoverWrapper = styled.main`
   padding: 35px;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    padding: 0 25px;
+  }
 `
 
 const MovieResults = styled.div`
   display: inline-block;
-  width: calc(100% - 295px);
+  width: calc(100% - 395px);
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    width: 100%;
+  }
 `
 
 const MovieFilters = styled.div`
-  width: 280px;
+  width: 380px;
   float: right;
   margin-top: 15px;
+  margin-right: 35px;
+  position: fixed;
+  right: 0;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: none;
+    float: none;
+    // position: none;
+    width: 100%;
+    float: none;
+    margin: 0;
+    // margin-right: 35px;
+    // position: fixed;
+    left: 0;
+  }
+`
+
+const MobileHeader = styled.div`
+  display: flex;
+  text-align: center;
+  align-items: center;
 `
 
 const MobilePageTitle = styled.h1`
   display: none;
-`
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: block;
+    margin-left:60px;
+    font-size: 30px;
+    font-weight: 400;
+  }
+`;
+
+const MobileSearchSection = styled.div`
+  display: none;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: flex;
+    margin: 7px 0 45px 0;
+    justify-content: space-between;
+    align-items: bottom;
+
+    .filterIcon {
+      border-bottom: 2px solid ${colors.primaryColor};
+
+      img{
+        margin-bottom:-24px !important;
+        padding-bottom:0 !important;
+        width: 27px;
+      }
+    }
+  }
+`;
 
 const TotalCount = styled.strong`
   display: block;
-`
+  font-weight:100;
+  font-size:13.5px;
+  
+`;
+
