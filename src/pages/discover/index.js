@@ -42,17 +42,11 @@ export default class Discover extends React.Component {
       backUpCount: "0",
       info: "",
       loading: "",
-      showNav: false,
-      isOpen: false,
 
-      style: {
-        width: 0,
-        zIndex: 5,
-        transition: "all 0.5s ease 0s"
-      }
     }
 
   }
+  
   componentDidMount() {
     this.loadAllGenres();
     this.loadPopularMovies();
@@ -188,7 +182,7 @@ export default class Discover extends React.Component {
             onChange={this.onChangeSearch}
           />
 
-          <div onClick={() => this.openNavBar()}>
+          <div className="filterIcon">
             <img src={filter} alt="menu" />
           </div>
         </MobileSearchSection>
@@ -273,18 +267,6 @@ const MobilePageTitle = styled.h1`
     font-size: 30px;
     font-weight: 400;
   }
-`
-
-const HamburgerMenu = styled.div`
-  width:55px;
-  cursor:pointer;
-  display: none;
-
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    display: block;
-    width:45px;
-    cursor:pointer;
-  }
 `;
 
 const MobileSearchSection = styled.div`
@@ -294,11 +276,24 @@ const MobileSearchSection = styled.div`
     display: flex;
     margin: 7px 0 45px 0;
     justify-content: space-between;
-    align-items: center;
+    align-items: bottom;
+
+    .filterIcon {
+      border-bottom: 2px solid ${colors.primaryColor};
+
+      img{
+        margin-bottom:-24px !important;
+        padding-bottom:0 !important;
+        width: 27px;
+      }
+    }
   }
 `;
 
 const TotalCount = styled.strong`
   display: block;
+  font-weight:100;
+  font-size:13.5px;
+  
 `;
 

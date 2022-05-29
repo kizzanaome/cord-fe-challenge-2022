@@ -34,8 +34,15 @@ export default function SideNavBar() {
     // })
   }
 
+
+
   return (
     <>
+      <div
+        className={isOpen ? "cover" : ""}
+        onClick={isOpen ? (() => setIsOpen(false)) : () => { }}>
+      </div>
+      
       <HamburgerMenu className={isOpen ? 'invisible' : ''} onClick={openNavBar}>
         <img src={menu} alt="menu" />
       </HamburgerMenu>

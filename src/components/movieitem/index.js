@@ -37,11 +37,11 @@ export default function MovieItem({ movie, genres }) {
                       {key !== (movie.genre_ids.length - 1)
                         ?
                         <>
-                          <p key={key}> {genre.name}  |  </p>
+                        <p key={genre_id}> {genre.name}  |  </p>
                         </>
                         :
                         <>
-                          <p > {genre.name}  </p>
+                          <p key={genre_id}> {genre.name}  </p>
                         </>
                       }
                     </>
