@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import * as color from "../../colors";
 import placeholder from "../../images/placeholder_leg.png"
@@ -12,9 +12,9 @@ export default function MovieItem({ movie, genres }) {
     // TODO: Complete the MovieItem component
     <MovieItemWrapper>
       <LeftCont>
-        <img 
-          src={movie.poster_path ? imageUrl + movie.poster_path : placeholder} 
-          alt="poster" 
+        <img
+          src={movie.poster_path ? imageUrl + movie.poster_path : placeholder}
+          alt="poster"
         />
       </LeftCont>
       <RightCont>
@@ -24,27 +24,31 @@ export default function MovieItem({ movie, genres }) {
           <Rating>{movie.vote_average}</Rating>
         </Header>
         <Genre>
-          <div>
-          {genres.map(genre =>
-            movie.genre_ids.map((genre_id, key) =>
-              <>
-                {genre.id === genre_id &&
-                  <>
-                    {key !== (movie.genre_ids.length - 1)
-                      ?
-                      <>
-                        <p key={key}> {genre.name}  |  </p>
-                      </>
-                      :
-                      <>
-                        <p > {genre.name}  </p>
-                      </>
-                    }
-                  </>
-                }
-              </>
-            )
-          )}
+          <div 
+            className={`${ 
+              movie.genre_ids.length > 3 ? 'scrollEnable' : movie.genre_ids.length > 5 ? 'scrollerEnable' : '' 
+            }`}
+          >
+            {genres.map(genre =>
+              movie.genre_ids.map((genre_id, key) =>
+                <>
+                  {genre.id === genre_id &&
+                    <>
+                      {key !== (movie.genre_ids.length - 1)
+                        ?
+                        <>
+                          <p key={key}> {genre.name}  |  </p>
+                        </>
+                        :
+                        <>
+                          <p > {genre.name}  </p>
+                        </>
+                      }
+                    </>
+                  }
+                </>
+              )
+            )}
           </div>
         </Genre>
         <Description>
@@ -132,14 +136,11 @@ const Rating = styled.div`
 `;
 
 const Genre = styled.div`
-  // width: 100px;
-  // overflow-x: scroll;
 
   div {
     display: flex;
     margin: 0;
     padding: 0;
-    // width: 100%;
 
     p {
       margin: 5px 7px 0 0;
@@ -151,11 +152,23 @@ const Genre = styled.div`
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     width: 150px;
     overflow-x: scroll;
-    font-size: 8px;
-    // border: 1px solid red;
+    font-size: 9px;
 
-    div {
-      width: 100vw;
+    .scrollEnable {
+      width: 70vw;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    .scrollerEnable {
+      width: 80vw;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    .scrollEnable::-webkit-scrollbar,
+    .scrollerEnable::-webkit-scrollbar {
+      display: none !important;
     }
   }
 `;

@@ -7,7 +7,12 @@ import * as fetcher from "../../fetcher";
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
-import menu from "../../images/hamburger-menu.svg"
+import menu from "../../images/menu.png"
+import SearchIcon from "../../images/search-icon-yellow.png";
+
+import filter from "../../images/filter-icon.png";
+
+import SearchBar from "../../components/searchbar";
 
 export default class Discover extends React.Component {
   constructor(props) {
@@ -36,7 +41,15 @@ export default class Discover extends React.Component {
       backUpResults: [],
       backUpCount: "0",
       info: "",
-      loading: ""
+      loading: "",
+      showNav: false,
+      isOpen: false,
+
+      style: {
+        width: 0,
+        zIndex: 5,
+        transition: "all 0.5s ease 0s"
+      }
     }
 
   }
@@ -159,16 +172,30 @@ export default class Discover extends React.Component {
     return (
       <DiscoverWrapper>
         <MobileHeader>
-          <HamburgerMenu>
+          {/* <HamburgerMenu onClick={() => this.openNavBar()}>
             <img src={menu} alt="menu" />
-          </HamburgerMenu>
+          </HamburgerMenu> */}
 
           <MobilePageTitle>Discover</MobilePageTitle>
         </MobileHeader>
 
+        <MobileSearchSection>
+          <SearchBar
+            id="keyword_search_input"
+            type="text"
+            icon={{ src: SearchIcon, alt: 'Magnifying glass' }}
+            placeholder="Search for movies"
+            onChange={this.onChangeSearch}
+          />
+
+          <div onClick={() => this.openNavBar()}>
+            <img src={filter} alt="menu" />
+          </div>
+        </MobileSearchSection>
+
         {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
 
-        <TotalCount>{totalCount.toLocaleString()} results</TotalCount>
+        <TotalCount>{totalCount.toLocaleString()} movies</TotalCount>
         <MovieFilters>
           <SearchFilters
             genres={genreOptions}
@@ -179,8 +206,6 @@ export default class Discover extends React.Component {
             onSearchDate={this.onSearchDate}
           />
         </MovieFilters>
-
-
 
         <MovieResults>
           <p>{this.state.info}</p>
@@ -222,6 +247,14 @@ const MovieFilters = styled.div`
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     display: none;
+    float: none;
+    // position: none;
+    width: 100%;
+    float: none;
+    margin: 0;
+    // margin-right: 35px;
+    // position: fixed;
+    left: 0;
   }
 `
 
@@ -236,7 +269,9 @@ const MobilePageTitle = styled.h1`
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     display: block;
-    margin-left:30px;
+    margin-left:60px;
+    font-size: 30px;
+    font-weight: 400;
   }
 `
 
@@ -247,13 +282,23 @@ const HamburgerMenu = styled.div`
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     display: block;
-    border: 1px solid red;
     width:45px;
     cursor:pointer;
   }
 `;
 
+const MobileSearchSection = styled.div`
+  display: none;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: flex;
+    margin: 7px 0 45px 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
 const TotalCount = styled.strong`
   display: block;
-`
+`;
 

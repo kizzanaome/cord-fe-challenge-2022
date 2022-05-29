@@ -6,29 +6,62 @@ import * as colors from "../../colors";
 import Arrow from "../../images/arrow-icon.png";
 import SearchWhite from "../../images/search-icon-white.png";
 
-export default function SideNavBar () {
+import menu from "../../images/menu.png"
+import closeImg from "../../images/cancel.png"
+
+export default function SideNavBar() {
   const [isOpen, setIsOpen] = useState(false);
   /* TODO: Write the necessary functions to open and close the sidebar */
 
+  // const openNavigation = () => {
+  //   console.log("open")
+  //   setIsOpen(!isOpen);
+  // }
+
+  const openNavBar = () => {
+    // const openNav = this.props.openNavigation();
+    setIsOpen(!isOpen);
+    console.log("open")
+    // this.setState({
+    //   // showNav: true,
+    //   isOpen: true,
+
+    //   // style: {
+    //   //   width: this.showNav ? "100%" : "0",
+    //   //   zIndex: 5,
+    //   //   transition: "all 0.5s ease 0s"
+    //   // }
+    // })
+  }
+
   return (
-    <SideNavBarCont className={isOpen ? 'visible' : ''}>
-      {/* TODO: Implement a hamburger icon that controls the open state of the sidebar. This control should only be visible on mobile devices via CSS media queries */}
-      {/* The sidebar should slide in from left */}
-      <SideNavHeader>
-        Wesley
-        <img src={Arrow} alt="Arrow pointing down" />
-      </SideNavHeader>
-      <SideNavMainLink to="/discover" exact>
-        Discover
-        <img src={SearchWhite} alt="Magnifying glass" />
-      </SideNavMainLink>
-      <SideNavSectionTitle><HeaderText>Watched</HeaderText></SideNavSectionTitle>
-      <NavLink to="/watched/movies">Movies</NavLink>
-      <NavLink to="/watched/tv-shows">Tv Shows</NavLink>
-      <SideNavSectionTitle><HeaderText>Saved</HeaderText></SideNavSectionTitle>
-      <NavLink to="/saved/movies">Movies</NavLink>
-      <NavLink to="/saved/tv-shows">Tv Shows</NavLink>
-    </SideNavBarCont>
+    <>
+      <HamburgerMenu className={isOpen ? 'invisible' : ''} onClick={openNavBar}>
+        <img src={menu} alt="menu" />
+      </HamburgerMenu>
+
+      <SideNavBarCont className={isOpen ? 'visible' : ''}>
+        <CloseMenu className={isOpen ? 'visible' : ''} onClick={openNavBar}>
+          <img src={closeImg} alt="menu" />
+        </CloseMenu>
+        {/* TODO: Implement a hamburger icon that controls the open state of the sidebar. This control should only be visible on mobile devices via CSS media queries */}
+        {/* The sidebar should slide in from left */}
+        <SideNavHeader>
+          Wesley
+          <img src={Arrow} alt="Arrow pointing down" />
+        </SideNavHeader>
+        <SideNavMainLink to="/discover" exact>
+          Discover
+          <img src={SearchWhite} alt="Magnifying glass" />
+        </SideNavMainLink>
+        <SideNavSectionTitle><HeaderText>Watched</HeaderText></SideNavSectionTitle>
+        <NavLink to="/watched/movies">Movies</NavLink>
+        <NavLink to="/watched/tv-shows">Tv Shows</NavLink>
+        <SideNavSectionTitle><HeaderText>Saved</HeaderText></SideNavSectionTitle>
+        <NavLink to="/saved/movies">Movies</NavLink>
+        <NavLink to="/saved/tv-shows">Tv Shows</NavLink>
+      </SideNavBarCont>
+    </>
   );
 }
 
@@ -36,12 +69,19 @@ const SideNavBarCont = styled.div`
   position: fixed;
   z-index: 9;
   width: 280px;
+  // transition: all 0.5s ease 0s;
   height: 100%;
   background-color: ${colors.sideNavBar};
   color: white;
 
+
+  
+
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    display: none;
+    // display: none;
+    visibility: hidden;
+    // transition: all 0.5s ease 0s;
+    // width: 0;
   }
 `;
 
@@ -70,6 +110,10 @@ const SideNavMainLink = styled(Link)`
 
 const SideNavHeader = styled.div`
   ${SectionsStyles}
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    margin-top: 25px;
+  }
 `;
 
 const SideNavSectionTitle = styled.div`
@@ -100,3 +144,35 @@ const NavLink = styled(Link)`
     opacity: 1;
   }
 `
+
+const HamburgerMenu = styled.div`
+  display: none;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: block;
+    position: absolute;
+    margin: 25px 0 0 25px;
+    cursor:pointer;
+
+    img {
+      width:35px;
+    }
+  }
+`;
+
+const CloseMenu = styled.div`
+  display: none;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: block;
+    position: absolute;
+    z-index: 5;
+    margin: 15px 15px 0 25px;
+    right: 0;
+    cursor:pointer;
+
+    img {
+      width:25px;
+    }
+  }
+`;

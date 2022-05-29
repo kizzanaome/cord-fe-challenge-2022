@@ -20,3 +20,14 @@ input, textarea {
   font-family: 'Lato', sans-serif;
   background-color: transparent;
 }
+
+.visible {
+  // display: block !important;
+  visibility: visible !important;
+  transition: "all 0.5s ease 0s"
+}
+
+.invisible {
+  // display: none !important;
+  visibility: hidden !important;
+}
