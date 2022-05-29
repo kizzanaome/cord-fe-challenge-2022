@@ -29,7 +29,8 @@ export default class App extends React.Component {
 const ContentWrapper = styled.main`
   padding-left: 280px;
 
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  // /* --- smartphone and tablet responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     padding-left: 0;
   }
 `

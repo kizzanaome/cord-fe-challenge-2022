@@ -21,6 +21,7 @@ input, textarea {
   background-color: transparent;
 }
 
+// /* --- smartphone and tablet responsiveness --- */
 @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
   .cover {
       width: 100%;
@@ -29,8 +30,6 @@ input, textarea {
       z-index: 5;
     }
 }
-
-
 
 .visible {
   // display: block !important;
