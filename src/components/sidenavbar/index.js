@@ -42,7 +42,7 @@ export default function SideNavBar() {
         className={isOpen ? "cover" : ""}
         onClick={isOpen ? (() => setIsOpen(false)) : () => { }}>
       </div>
-      
+
       <HamburgerMenu className={isOpen ? 'invisible' : ''} onClick={openNavBar}>
         <img src={menu} alt="menu" />
       </HamburgerMenu>
@@ -75,7 +75,7 @@ export default function SideNavBar() {
 const SideNavBarCont = styled.div`
   position: fixed;
   z-index: 9;
-  width: 280px;
+  width: 260px;
   // transition: all 0.5s ease 0s;
   height: 100%;
   background-color: ${colors.sideNavBar};
@@ -84,7 +84,7 @@ const SideNavBarCont = styled.div`
 
   
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     // display: none;
     visibility: hidden;
     // transition: all 0.5s ease 0s;
@@ -118,7 +118,7 @@ const SideNavMainLink = styled(Link)`
 const SideNavHeader = styled.div`
   ${SectionsStyles}
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     margin-top: 25px;
   }
 `;
@@ -155,7 +155,7 @@ const NavLink = styled(Link)`
 const HamburgerMenu = styled.div`
   display: none;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: block;
     position: absolute;
     margin: 25px 0 0 25px;
@@ -170,7 +170,7 @@ const HamburgerMenu = styled.div`
 const CloseMenu = styled.div`
   display: none;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: block;
     position: absolute;
     z-index: 5;

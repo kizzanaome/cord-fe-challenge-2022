@@ -46,7 +46,7 @@ export default class Discover extends React.Component {
     }
 
   }
-  
+
   componentDidMount() {
     this.loadAllGenres();
     this.loadPopularMovies();
@@ -217,7 +217,7 @@ export default class Discover extends React.Component {
 const DiscoverWrapper = styled.main`
   padding: 35px;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     padding: 0 25px;
   }
 `
@@ -226,7 +226,7 @@ const MovieResults = styled.div`
   display: inline-block;
   width: calc(100% - 395px);
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     width: 100%;
   }
 `
@@ -239,7 +239,7 @@ const MovieFilters = styled.div`
   position: fixed;
   right: 0;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: none;
     float: none;
     // position: none;
@@ -261,7 +261,7 @@ const MobileHeader = styled.div`
 const MobilePageTitle = styled.h1`
   display: none;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: block;
     margin-left:60px;
     font-size: 30px;
@@ -272,7 +272,7 @@ const MobilePageTitle = styled.h1`
 const MobileSearchSection = styled.div`
   display: none;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: flex;
     margin: 7px 0 45px 0;
     justify-content: space-between;
