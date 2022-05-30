@@ -8,20 +8,23 @@ import Discover from "./pages/discover";
 
 
 import './css/app.scss';
+import { FetcherProvider } from "./Context/FetcherContext";
 
 export default class App extends React.Component {
   render() {
     return (
-      <Router>
-        <PageContainer>
-          <SideNavBar {...this.props} />
-          <ContentWrapper>
-            <Switch>
-              <Route path="/discover" component={Discover} {...this.props} />
-            </Switch>
-          </ContentWrapper>
-        </PageContainer>
-      </Router>
+      <FetcherProvider>
+        <Router>
+          <PageContainer>
+            <SideNavBar {...this.props} />
+            <ContentWrapper>
+              <Switch>
+                <Route path="/discover" component={Discover} {...this.props} />
+              </Switch>
+            </ContentWrapper>
+          </PageContainer>
+        </Router>
+      </FetcherProvider>
     );
   }
 }

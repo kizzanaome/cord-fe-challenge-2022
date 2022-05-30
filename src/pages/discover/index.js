@@ -16,9 +16,13 @@ import noInternet from "../../images/no-internet.png";
 import SearchBar from "../../components/searchbar";
 import NoInternet from "../../components/noInternt";
 import Loading from "../../components/newLoader";
+import FetcherContext from "../../Context/FetcherContext";
 const ExpandableFilter = React.lazy(() => import('../../components/accordionfilter'))
 
 export default class Discover extends React.Component {
+
+  static contextType = FetcherContext;
+
   constructor(props) {
     super(props);
 
@@ -53,7 +57,6 @@ export default class Discover extends React.Component {
   }
 
   componentDidMount() {
-    this.loadAllGenres();
     this.loadPopularMovies();
   }
 
@@ -78,23 +81,6 @@ export default class Discover extends React.Component {
       this.setState({
         info: <NoInternet noInternet={noInternet} message={server_response.details.message} />,
         loading: false
-      })
-    }
-  }
-
-
-  /**
-  * LISTS ALL GENRES
-  */
-  loadAllGenres = async () => {
-    const server_response = await fetcher.getAllGenres();
-    if (server_response.status === 200) {
-      this.setState({
-        genreOptions: server_response.data.genres,
-      })
-    } else {
-      this.setState({
-        genreOptions: []
       })
     }
   }
@@ -197,7 +183,11 @@ export default class Discover extends React.Component {
   // TODO: Update search results based on the keyword and year inputs
 
   render() {
-    const { genreOptions, languageOptions, ratingOptions, totalCount, results } = this.state;
+    const { languageOptions, ratingOptions, totalCount, results } = this.state;
+
+    const { genreOptions } = this.context;
+
+
 
     return (
       <DiscoverWrapper>

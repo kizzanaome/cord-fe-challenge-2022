@@ -7,7 +7,7 @@ import * as colors from "../colors";
 export default function LoadingAnimation() {
     return (
         <Load>
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
             <p>Loading data...</p>
         </Load>
     )

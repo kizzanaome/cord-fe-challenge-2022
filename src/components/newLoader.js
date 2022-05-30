@@ -8,7 +8,7 @@ export default function Loading() {
     return (
         <Load>
             Loading data...
-            <span class="skeleton-loader-background"> </span>
+            <span className="skeleton-loader-background"> </span>
         </Load>
     )
 
