@@ -5,7 +5,10 @@ import MobilePageTitle from '../pages/discover/index';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 import { shallow, configure, mount } from 'enzyme';
-import renderer from 'react-test-renderer'
+import renderer from 'react-test-renderer';
+
+// import 'jest-enzyme';
+// import 'jest-styled-components';
 
 import Discover from '../pages/discover'
 
@@ -19,9 +22,6 @@ configure({ adapter: new Adapter() });
 // });
 
 
-
-
-
 describe("renders the discover UI correctly", () => {
 
     let wrapper;
@@ -31,19 +31,18 @@ describe("renders the discover UI correctly", () => {
 
     })
 
-    it("renders mobile header correctly", () => {
-        const tree = renderer.create(
-            <MobileHeader>
-                <MobilePageTitle>Discover</MobilePageTitle>
-            </MobileHeader>
-        ).toJSON();
-        expect(tree).toMatchSnapshot();
-    })
+    // it("renders mobile header correctly", () => {
+    //     const tree = renderer.create(
+    //         <MobileHeader>
+    //             <MobilePageTitle>Discover</MobilePageTitle>
+    //         </MobileHeader>
+    //     ).toJSON();
+    //     expect(tree).toMatchSnapshot();
+    // })
 
     it("renders mobile title correctly", () => {
-        const tree = renderer.create(
-            <MobilePageTitle>Discover</MobilePageTitle>
-        ).toJSON();
+        const component = <MobilePageTitle>Discover</MobilePageTitle>
+        const tree = renderer.create(component).toJSON();
         expect(tree).toMatchSnapshot();
     })
 

@@ -501,7 +501,508 @@ exports[`renders the discover UI correctly renders mobile header correctly 1`] =
 </main>
 `;
 
+exports[`renders the discover UI correctly renders mobile header correctly 2`] = `
+<main
+  className="sc-bjUoiL eehIho"
+>
+  <div
+    className="sc-hHLeRK dXYShW"
+  >
+    <h1
+      className="sc-dmRaPn jDetwL"
+    >
+      Discover
+    </h1>
+  </div>
+  <div
+    className="sc-kgflAQ eUbBEa"
+  >
+    <div
+      className="sc-jSMfEi htNodg search_bar_wrapper"
+    >
+      <img
+        alt="Magnifying glass"
+        htmlFor="keyword_search_input"
+        src="search-icon-yellow.png"
+        width="25"
+      />
+      <input
+        id="keyword_search_input"
+        onChange={[Function]}
+        placeholder="Search for movies"
+        type="text"
+      />
+    </div>
+    <div
+      className="filterIcon"
+    >
+      <img
+        alt="menu"
+        src="filter-icon.png"
+      />
+    </div>
+  </div>
+  <strong
+    className="sc-fLlhyt Sikxz"
+  >
+    0
+     movies
+  </strong>
+  <div
+    className="sc-dIouRR hYLHJF"
+  >
+    <div
+      className="sc-gKXOVf czoAbi"
+    >
+      <div
+        className="sc-iBkjds kHPdLD search_inputs_cont"
+      >
+        <div
+          className="sc-jSMfEi htNodg search_bar_wrapper"
+        >
+          <img
+            alt="Magnifying glass"
+            htmlFor="keyword_search_input"
+            src="search-icon-yellow.png"
+            width="25"
+          />
+          <input
+            id="keyword_search_input"
+            onChange={[Function]}
+            placeholder="Search for movies"
+            type="text"
+          />
+        </div>
+        <div
+          className="sc-jSMfEi htNodg search_bar_wrapper"
+        >
+          <img
+            alt="Calendar icon"
+            htmlFor="year_search_input"
+            src="year-icon.png"
+            width="25"
+          />
+          <input
+            id="year_search_input"
+            onChange={[Function]}
+            placeholder="Year of release"
+            type="number"
+          />
+        </div>
+      </div>
+      <div
+        className="sc-iBkjds drTrpK"
+      >
+        <h3
+          className="sc-ftvSup hgbAvM"
+        >
+          Movies
+        </h3>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select genre(s)
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select min. vote
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select language
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-idiyUo ehectm"
+  >
+    <p>
+      
+    </p>
+    <p>
+      Loading...
+    </p>
+    <div
+      className="sc-fEOsli lgBRRH"
+    />
+  </div>
+</main>
+`;
+
+exports[`renders the discover UI correctly renders mobile headers correctly 1`] = `
+<main
+  className="sc-bjUoiL eehIho"
+>
+  <div
+    className="sc-hHLeRK dXYShW"
+  >
+    <h1
+      className="sc-dmRaPn jDetwL"
+    >
+      Discover
+    </h1>
+  </div>
+  <div
+    className="sc-kgflAQ eUbBEa"
+  >
+    <div
+      className="sc-jSMfEi htNodg search_bar_wrapper"
+    >
+      <img
+        alt="Magnifying glass"
+        htmlFor="keyword_search_input"
+        src="search-icon-yellow.png"
+        width="25"
+      />
+      <input
+        id="keyword_search_input"
+        onChange={[Function]}
+        placeholder="Search for movies"
+        type="text"
+      />
+    </div>
+    <div
+      className="filterIcon"
+    >
+      <img
+        alt="menu"
+        src="filter-icon.png"
+      />
+    </div>
+  </div>
+  <strong
+    className="sc-fLlhyt Sikxz"
+  >
+    0
+     movies
+  </strong>
+  <div
+    className="sc-dIouRR hYLHJF"
+  >
+    <div
+      className="sc-gKXOVf czoAbi"
+    >
+      <div
+        className="sc-iBkjds kHPdLD search_inputs_cont"
+      >
+        <div
+          className="sc-jSMfEi htNodg search_bar_wrapper"
+        >
+          <img
+            alt="Magnifying glass"
+            htmlFor="keyword_search_input"
+            src="search-icon-yellow.png"
+            width="25"
+          />
+          <input
+            id="keyword_search_input"
+            onChange={[Function]}
+            placeholder="Search for movies"
+            type="text"
+          />
+        </div>
+        <div
+          className="sc-jSMfEi htNodg search_bar_wrapper"
+        >
+          <img
+            alt="Calendar icon"
+            htmlFor="year_search_input"
+            src="year-icon.png"
+            width="25"
+          />
+          <input
+            id="year_search_input"
+            onChange={[Function]}
+            placeholder="Year of release"
+            type="number"
+          />
+        </div>
+      </div>
+      <div
+        className="sc-iBkjds drTrpK"
+      >
+        <h3
+          className="sc-ftvSup hgbAvM"
+        >
+          Movies
+        </h3>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select genre(s)
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select min. vote
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select language
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-idiyUo ehectm"
+  >
+    <p>
+      
+    </p>
+    <p>
+      Loading...
+    </p>
+    <div
+      className="sc-fEOsli lgBRRH"
+    />
+  </div>
+</main>
+`;
+
 exports[`renders the discover UI correctly renders mobile title correctly 1`] = `
+<main
+  className="sc-bjUoiL eehIho"
+>
+  <div
+    className="sc-hHLeRK dXYShW"
+  >
+    <h1
+      className="sc-dmRaPn jDetwL"
+    >
+      Discover
+    </h1>
+  </div>
+  <div
+    className="sc-kgflAQ eUbBEa"
+  >
+    <div
+      className="sc-jSMfEi htNodg search_bar_wrapper"
+    >
+      <img
+        alt="Magnifying glass"
+        htmlFor="keyword_search_input"
+        src="search-icon-yellow.png"
+        width="25"
+      />
+      <input
+        id="keyword_search_input"
+        onChange={[Function]}
+        placeholder="Search for movies"
+        type="text"
+      />
+    </div>
+    <div
+      className="filterIcon"
+    >
+      <img
+        alt="menu"
+        src="filter-icon.png"
+      />
+    </div>
+  </div>
+  <strong
+    className="sc-fLlhyt Sikxz"
+  >
+    0
+     movies
+  </strong>
+  <div
+    className="sc-dIouRR hYLHJF"
+  >
+    <div
+      className="sc-gKXOVf czoAbi"
+    >
+      <div
+        className="sc-iBkjds kHPdLD search_inputs_cont"
+      >
+        <div
+          className="sc-jSMfEi htNodg search_bar_wrapper"
+        >
+          <img
+            alt="Magnifying glass"
+            htmlFor="keyword_search_input"
+            src="search-icon-yellow.png"
+            width="25"
+          />
+          <input
+            id="keyword_search_input"
+            onChange={[Function]}
+            placeholder="Search for movies"
+            type="text"
+          />
+        </div>
+        <div
+          className="sc-jSMfEi htNodg search_bar_wrapper"
+        >
+          <img
+            alt="Calendar icon"
+            htmlFor="year_search_input"
+            src="year-icon.png"
+            width="25"
+          />
+          <input
+            id="year_search_input"
+            onChange={[Function]}
+            placeholder="Year of release"
+            type="number"
+          />
+        </div>
+      </div>
+      <div
+        className="sc-iBkjds drTrpK"
+      >
+        <h3
+          className="sc-ftvSup hgbAvM"
+        >
+          Movies
+        </h3>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select genre(s)
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select min. vote
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-bczRLJ"
+        >
+          <div
+            className="sc-gsnTZi cJhKTw"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-dkzDqf cvHdPD"
+            >
+              +
+            </div>
+            <div>
+              Select language
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-idiyUo ehectm"
+  >
+    <p>
+      
+    </p>
+    <p>
+      Loading...
+    </p>
+    <div
+      className="sc-fEOsli lgBRRH"
+    />
+  </div>
+</main>
+`;
+
+exports[`renders the discover UI correctly renders mobile title correctly 2`] = `
 <main
   className="sc-bjUoiL eehIho"
 >

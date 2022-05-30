@@ -7,7 +7,6 @@ import * as fetcher from "../../fetcher";
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
-import menu from "../../images/menu.png"
 import SearchIcon from "../../images/search-icon-yellow.png";
 
 import filter from "../../images/filter-icon.png";
