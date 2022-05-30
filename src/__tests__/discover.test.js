@@ -1,10 +1,13 @@
+import React from 'react';
+import MobileHeader from '../pages/discover/index';
+import MobilePageTitle from '../pages/discover/index';
 // import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 import { shallow, configure, mount } from 'enzyme';
-// import renderer from 'react-test-renderer'
+import renderer from 'react-test-renderer'
 
-import Discover from './pages/discover'
+import Discover from '../pages/discover'
 
 configure({ adapter: new Adapter() });
 
@@ -17,7 +20,9 @@ configure({ adapter: new Adapter() });
 
 
 
-describe("fetching from the Movie API", () => {
+
+
+describe("renders the discover UI correctly", () => {
 
     let wrapper;
     beforeEach(() => {
@@ -25,6 +30,24 @@ describe("fetching from the Movie API", () => {
         // console.log(wrapper.debug())
 
     })
+
+    it("renders mobile header correctly", () => {
+        const tree = renderer.create(
+            <MobileHeader>
+                <MobilePageTitle>Discover</MobilePageTitle>
+            </MobileHeader>
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
+    })
+
+    it("renders mobile title correctly", () => {
+        const tree = renderer.create(
+            <MobilePageTitle>Discover</MobilePageTitle>
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
+    })
+
+    
 
     // test("render the discover ui", () => {
     //     console.log(wrapper.find("div"));

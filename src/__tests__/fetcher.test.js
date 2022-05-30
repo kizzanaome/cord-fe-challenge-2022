@@ -9,9 +9,6 @@ jest.mock('axios');
 
 describe('fetchData', () => {
 
-    // const keyword = "Bad"
-    // const year ="2020"
-
     /**
      * TEST THE GET POPULAR MOVIES API ENPOINT
      */
@@ -66,4 +63,5 @@ describe('fetchData', () => {
     //     axios.get.mockImplementationOnce(() => Promise.reject(new Error(errorMessage)),);
     //     await expect(fetcher.getpopularMovies()).rejects.toThrow(errorMessage);
     // });
+    
 });

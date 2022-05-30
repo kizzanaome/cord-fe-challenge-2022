@@ -261,7 +261,8 @@ const MobileHeader = styled.div`
   display: flex;
   text-align: center;
   align-items: center;
-`
+`;
+
 
 const MobilePageTitle = styled.h1`
   display: none;
