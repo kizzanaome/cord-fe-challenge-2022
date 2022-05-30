@@ -107,7 +107,8 @@ export default class Discover extends React.Component {
       this.setState({
         loading: false,
         info: "No records found for this search",
-        results: []
+        results: [],
+        totalCount: 0
       })
     } else {
       this.setState({

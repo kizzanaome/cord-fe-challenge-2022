@@ -7,6 +7,7 @@ jest.mock('axios');
 
 describe('Test All API requests', () => {
 
+
     /**
      * TEST THE GET POPULAR MOVIES API ENPOINT
      */
@@ -39,30 +40,29 @@ describe('Test All API requests', () => {
     /**
      * TEST THE GET GENRES API ENPOINT
      */
-    // it('fetches genres data successfully from an API', async () => {
+    it('fetches genres data successfully from an API', async () => {
 
-    //     const genres = {
-    //         genres: [{
-    //             "id": 28,
-    //             "name": "Action"
-    //         }, {
+        const genres = {
+            genres: [{
+                "id": 28,
+                "name": "Action"
+            }, {
 
-    //             "id": 12,
-    //             "name": "Adventure"
-    //         }
-    //         ]
-    //     };
+                "id": 12,
+                "name": "Adventure"
+            }
+            ]
+        };
 
-    //     mockAxios.get.mockImplementationOnce(() => Promise.resolve(genres));
+        mockAxios.get.mockImplementationOnce(() => Promise.resolve(genres));
 
-    //     let fetcher = new FetcherContext;
-    //     const genresResults = await fetcher.getAllGenres();
+        const genresResults = await fetcher.getAllGenres();
 
-    //     expect(genresResults).toEqual(genres);
-    //     // expect(genresResults).resolves.toEqual(genres);
+        expect(genresResults).toEqual(genres);
+        // expect(genresResults).resolves.toEqual(genres);
 
-    //     expect(mockAxios.get).toHaveBeenCalledWith("https://api.themoviedb.org/3/genre/movie/list?api_key=dae1bc94f2be7c7a6e80f5ca557ae55f&language=en-US&page");
-    // });
+        expect(mockAxios.get).toHaveBeenCalledWith("https://api.themoviedb.org/3/genre/movie/list?api_key=dae1bc94f2be7c7a6e80f5ca557ae55f&language=en-US&page");
+    });
 
 
     /**
