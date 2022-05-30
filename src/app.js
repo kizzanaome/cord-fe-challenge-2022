@@ -6,6 +6,7 @@ import SideNavBar from "./components/sidenavbar";
 
 import Discover from "./pages/discover";
 
+
 import './css/app.scss';
 
 export default class App extends React.Component {

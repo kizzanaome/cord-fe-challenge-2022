@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from 'styled-components';
 
 import * as colors from "../../colors";
@@ -8,10 +8,15 @@ import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
 import SearchIcon from "../../images/search-icon-yellow.png";
+import YearIcon from "../../images/year-icon.png";
 
 import filter from "../../images/filter-icon.png";
+import noInternet from "../../images/no-internet.png";
 
 import SearchBar from "../../components/searchbar";
+import NoInternet from "../../components/noInternt";
+import Loading from "../../components/newLoader";
+const ExpandableFilter = React.lazy(() => import('../../components/accordionfilter'))
 
 export default class Discover extends React.Component {
   constructor(props) {
@@ -40,9 +45,9 @@ export default class Discover extends React.Component {
       backUpResults: [],
       backUpCount: "0",
       info: "",
-      loading: "",
-      noKeyword: false
-
+      loading: false,
+      noKeyword: false,
+      showFilters: false,
     }
 
   }
@@ -52,14 +57,17 @@ export default class Discover extends React.Component {
     this.loadPopularMovies();
   }
 
-  // LISTS POPULAR MOVIES
-  // WHEN THE PAGE LOADS AND STORES 
-  // THE RESULTS IN THE STATE.
+  /** 
+   * LISTS POPULAR MOVIES
+  *  WHEN THE PAGE LOADS AND STORES THE RESULTS IN THE STATE.
+  */
   loadPopularMovies = async () => {
     this.setState({
       loading: true,
     })
+
     const server_response = await fetcher.getpopularMovies();
+
     if (server_response.status === 200) {
       this.setState({
         loading: false,
@@ -68,12 +76,16 @@ export default class Discover extends React.Component {
       })
     } else {
       this.setState({
-        info: server_response.details.message
+        info: <NoInternet noInternet={noInternet} message={server_response.details.message} />,
+        loading: false
       })
     }
   }
 
-  // LISTS ALL GENRES
+
+  /**
+  * LISTS ALL GENRES
+  */
   loadAllGenres = async () => {
     const server_response = await fetcher.getAllGenres();
     if (server_response.status === 200) {
@@ -87,7 +99,9 @@ export default class Discover extends React.Component {
     }
   }
 
-  // RETRUNS SEARCHED MOVIES
+  /*
+  * RETRUNS SEARCHED MOVIES
+  */
   searchMovies = async (keyword, year) => {
     this.setState({
       loading: true,
@@ -96,7 +110,8 @@ export default class Discover extends React.Component {
     if (server_response.data.results.length === 0) {
       this.setState({
         loading: false,
-        info: "No records found for this search"
+        info: "No records found for this search",
+        results: []
       })
     } else {
       this.setState({
@@ -108,7 +123,7 @@ export default class Discover extends React.Component {
     }
   }
 
-  // ONCHANGE QUERY TO SEARCH FOR A MOVIE
+  /** ONCHANGE QUERY TO SEARCH FOR A MOVIE */
   onChangeSearch = (value, id) => {
     if (this.state.backUpResults.length === 0) {
       this.setState({
@@ -167,6 +182,12 @@ export default class Discover extends React.Component {
     }
   }
 
+  showSearchFilters = () => {
+    this.setState({
+      showFilters: !(this.state.showFilters)
+    })
+  }
+
 
 
 
@@ -187,22 +208,56 @@ export default class Discover extends React.Component {
         <MobileSearchSection>
           <SearchBar
             id="keyword_search_input"
+            data-test-id="test-search"
             type="text"
             icon={{ src: SearchIcon, alt: 'Magnifying glass' }}
             placeholder="Search for movies"
             onChange={this.onChangeSearch}
           />
 
-          <div className="filterIcon">
+          <div onClick={() => this.showSearchFilters()} className="filterIcon">
             <img src={filter} alt="menu" />
           </div>
         </MobileSearchSection>
 
+        {this.state.showFilters &&
+          <MobileSearchFilterSection>
+            <SearchBar
+              id="year_search_input"
+              type="number"
+              icon={{ src: YearIcon, alt: 'Calendar icon' }}
+              placeholder="Year of release"
+              onChange={this.onSearchDate}
+            />
+
+            <SearchFiltersCont>
+              <CategoryTitle>Movies</CategoryTitle>
+
+              {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
+              <Suspense fallback={<div>Loading...</div>}>
+                <ExpandableFilter
+                  title="Select genre(s)"
+                  genres={genreOptions}
+                />
+              </Suspense>
+              <ExpandableFilter
+                title="Select min. vote"
+                genres=""
+              />
+              <ExpandableFilter
+                title="Select language"
+                genres=""
+              />
+            </SearchFiltersCont>
+          </MobileSearchFilterSection>
+        }
+
         {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
 
-        <TotalCount>{totalCount.toLocaleString()} movies</TotalCount>
+        {!this.state.loading ? <TotalCount>{totalCount.toLocaleString()} movies</TotalCount> : ""}
+        {this.state.loading && <Loading />}
         <MovieFilters>
-          {this.state.noKeyword && <FormError>Search for movies is required</FormError>}
+          {this.state.noKeyword && <FormError>Keyword is required for search</FormError>}
           <SearchFilters
             genres={genreOptions}
             ratings={ratingOptions}
@@ -215,8 +270,8 @@ export default class Discover extends React.Component {
         </MovieFilters>
 
         <MovieResults>
-          <p>{this.state.info}</p>
-          {this.state.loading && <p>Loading...</p>}
+          {!this.state.loading && this.state.info}
+
           <MovieList
             movies={results || []}
             genres={genreOptions || []}
@@ -295,7 +350,29 @@ const MobileSearchSection = styled.div`
   /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: flex;
-    margin: 7px 0 45px 0;
+    margin: 7px 0 15px 0;
+    justify-content: space-between;
+    align-items: bottom;
+
+    .filterIcon {
+      border-bottom: 2px solid ${colors.primaryColor};
+
+      img{
+        margin-bottom:-24px !important;
+        padding-bottom:0 !important;
+        width: 27px;
+      }
+    }
+  }
+`;
+
+const MobileSearchFilterSection = styled.div`
+  display: none;
+
+  /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: bottom;
 
@@ -316,10 +393,32 @@ const TotalCount = styled.strong`
   font-weight:100;
   font-size:13.5px;
   
+  /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+    margin: 37px 0 0 0;
+  }
 `;
 
 const FormError = styled.span`
   color: #FF0000;
+`;
 
+
+const SearchFiltersCont = styled.div`
+  background-color: white;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  transition: all .3s ease-in-out;
+`
+
+const CategoryTitle = styled.h3`
+  /* --- smartphone responsiveness --- */
+  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+    margin: 0 0 15px 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
 `
 

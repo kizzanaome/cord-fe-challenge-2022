@@ -116,6 +116,7 @@ const NavLink = styled(Link)`
   opacity: .8;
   font-size: 1.2em;
   padding: 10px 35px;
+  font-weight:100;
 
   &:hover, &:focus-visible {
     opacity: 1;
@@ -131,6 +132,14 @@ const NavLink = styled(Link)`
 const HamburgerMenu = styled.div`
   display: none;
 
+  &:hover, &:focus-visible {
+    outline: none;
+  }
+
+  &.active { 
+    outline: none;
+  }
+
   /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     display: block;
@@ -138,14 +147,38 @@ const HamburgerMenu = styled.div`
     margin: 25px 0 0 25px;
     cursor:pointer;
 
+    &:hover, &:focus-visible {
+      outline: none;
+    }
+
+    &.active { 
+      outline: none;
+    }
+
     img {
       width:35px;
+
+      &:hover, &:focus-visible {
+        outline: none;
+      }
+
+      &.active { 
+        outline: none;
+      }
     }
   }
 `;
 
 const CloseMenu = styled.div`
   display: none;
+
+  &:hover, &:focus-visible {
+    outline: none;
+  }
+
+  &.active { 
+    outline: none;
+  }
 
   /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
@@ -156,8 +189,24 @@ const CloseMenu = styled.div`
     right: 0;
     cursor:pointer;
 
+    &:hover, &:focus-visible {
+      outline: none;
+    }
+
+    &.active { 
+      outline: none;
+    }
+
     img {
       width:25px;
+
+      &:hover, &:focus-visible {
+        outline: none;
+      }
+
+      &.active { 
+        outline: none;
+      }
     }
   }
 `;

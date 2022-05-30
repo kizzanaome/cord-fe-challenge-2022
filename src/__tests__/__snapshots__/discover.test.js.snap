@@ -1168,3 +1168,5 @@ exports[`renders the discover UI correctly renders mobile title correctly 2`] = 
   </div>
 </main>
 `;
+
+exports[`renders the discover UI correctly should test Discover component 1`] = `ShallowWrapper {}`;

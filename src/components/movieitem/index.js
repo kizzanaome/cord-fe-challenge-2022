@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import * as color from "../../colors";
 import placeholder from "../../images/placeholder_leg.png"

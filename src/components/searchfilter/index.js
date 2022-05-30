@@ -7,7 +7,6 @@ import SearchBar from "../../components/searchbar";
 
 import SearchIcon from "../../images/search-icon-yellow.png";
 import YearIcon from "../../images/year-icon.png";
-import AccordionFilter from "../accordionfilter";
 
 export default function SearchFilters({ genres, ratings, languages, onSearch, onSearchDate }) {
 
@@ -35,15 +34,15 @@ export default function SearchFilters({ genres, ratings, languages, onSearch, on
 
         {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
 
-        <AccordionFilter
+        <ExpandableFilter
           title="Select genre(s)"
           genres={genres}
         />
-        <AccordionFilter
+        <ExpandableFilter
           title="Select min. vote"
           genres=""
         />
-        <AccordionFilter
+        <ExpandableFilter
           title="Select language"
           genres=""
         />
@@ -57,7 +56,7 @@ const FiltersWrapper = styled.div`
 `
 
 const SearchFiltersCont = styled.div`
-  background-color: white;
+  background-color: ${colors.whiteBackground};
   padding: 20px;
   border-radius: 5px;
   transition: all .3s ease-in-out;
