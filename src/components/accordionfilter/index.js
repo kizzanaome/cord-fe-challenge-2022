@@ -53,6 +53,8 @@ const AccordionIndicator = styled.div`
 const AccordionContent = styled.div`
     padding-top: 1rem;
     transition: .3s;
+    height: 45vh;
+    overflow-y: scroll;
 `;
 
 const Checkbox = styled.div`
