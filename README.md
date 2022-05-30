@@ -11,6 +11,8 @@ cord-fe-challenge-2022 is a mini movie application that shows most popular movie
 ### Introduction
  
 This is a mini web application that enables a user to view most popular movies with some details of the movie displayed, and search any movie based on movie title and year.
+
+![](cord.gif)
  
  
 ### Features
@@ -55,6 +57,7 @@ This is a mini web application that enables a user to view most popular movies w
 - Add lazy loading on fetched data to help
 - add a few tests to test the UI components of the app and the axios API requests
 - Host the app on netlify for easy accessibility
+- Added gif to read me.
  
 ### Technologies used
  
