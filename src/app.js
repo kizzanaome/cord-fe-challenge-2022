@@ -6,21 +6,25 @@ import SideNavBar from "./components/sidenavbar";
 
 import Discover from "./pages/discover";
 
+
 import './css/app.scss';
+import { FetcherProvider } from "./Context/FetcherContext";
 
 export default class App extends React.Component {
   render() {
     return (
-      <Router>
-        <PageContainer>
-          <SideNavBar {...this.props} />
-          <ContentWrapper>
-            <Switch>
-              <Route path="/discover" component={Discover} {...this.props} />
-            </Switch>
-          </ContentWrapper>
-        </PageContainer>
-      </Router>
+      <FetcherProvider>
+        <Router>
+          <PageContainer>
+            <SideNavBar {...this.props} />
+            <ContentWrapper>
+              <Switch>
+                <Route path="/discover" component={Discover} {...this.props} />
+              </Switch>
+            </ContentWrapper>
+          </PageContainer>
+        </Router>
+      </FetcherProvider>
     );
   }
 }
@@ -29,7 +33,7 @@ export default class App extends React.Component {
 const ContentWrapper = styled.main`
   padding-left: 280px;
 
-  // /* --- smartphone and tablet responsiveness --- */
+  /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     padding-left: 0;
   }

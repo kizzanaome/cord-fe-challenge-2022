@@ -57,17 +57,13 @@ const SideNavBarCont = styled.div`
   position: fixed;
   z-index: 9;
   width: 260px;
-  // transition: all 0.5s ease 0s;
   height: 100%;
   background-color: ${colors.sideNavBar};
   color: white;
 
-  // /* --- smartphone and tablet responsiveness --- */
+  /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
-    // display: none;
     visibility: hidden;
-    // transition: all 0.5s ease 0s;
-    // width: 0;
   }
 `;
 
@@ -97,7 +93,7 @@ const SideNavMainLink = styled(Link)`
 const SideNavHeader = styled.div`
   ${SectionsStyles}
 
-  // /* --- smartphone and tablet responsiveness --- */
+  /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     margin-top: 25px;
   }
@@ -120,6 +116,7 @@ const NavLink = styled(Link)`
   opacity: .8;
   font-size: 1.2em;
   padding: 10px 35px;
+  font-weight:100;
 
   &:hover, &:focus-visible {
     opacity: 1;
@@ -135,15 +132,39 @@ const NavLink = styled(Link)`
 const HamburgerMenu = styled.div`
   display: none;
 
-  // /* --- smartphone and tablet responsiveness --- */
+  &:hover, &:focus-visible {
+    outline: none;
+  }
+
+  &.active { 
+    outline: none;
+  }
+
+  /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     display: block;
     position: absolute;
     margin: 25px 0 0 25px;
     cursor:pointer;
 
+    &:hover, &:focus-visible {
+      outline: none;
+    }
+
+    &.active { 
+      outline: none;
+    }
+
     img {
       width:35px;
+
+      &:hover, &:focus-visible {
+        outline: none;
+      }
+
+      &.active { 
+        outline: none;
+      }
     }
   }
 `;
@@ -151,7 +172,15 @@ const HamburgerMenu = styled.div`
 const CloseMenu = styled.div`
   display: none;
 
-  // /* --- smartphone and tablet responsiveness --- */
+  &:hover, &:focus-visible {
+    outline: none;
+  }
+
+  &.active { 
+    outline: none;
+  }
+
+  /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     display: block;
     position: absolute;
@@ -160,8 +189,24 @@ const CloseMenu = styled.div`
     right: 0;
     cursor:pointer;
 
+    &:hover, &:focus-visible {
+      outline: none;
+    }
+
+    &.active { 
+      outline: none;
+    }
+
     img {
       width:25px;
+
+      &:hover, &:focus-visible {
+        outline: none;
+      }
+
+      &.active { 
+        outline: none;
+      }
     }
   }
 `;

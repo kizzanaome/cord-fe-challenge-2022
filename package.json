@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/react": "^12.1.2",
     "axios": "^0.21.1",
     "npm-run-all": "^4.1.5",
     "react": "^17.0.1",
@@ -17,7 +18,8 @@
     "eject": "react-scripts eject",
     "start-js": "react-scripts start",
     "start": "npm-run-all start-js",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "clear_jest": "jest --clearCache"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,8 +39,10 @@
   "devDependencies": {
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
-    "enzyme": "^3.11.0",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
-    "jest": "26.6.0"
+    "@types/jest": "^27.5.1",
+    "jest": "^26.6.0",
+    "jest-styled-components": "^7.0.8",
+    "prettier": "^2.6.2",
+    "react-test-renderer": "^17.0.2"
   }
 }
