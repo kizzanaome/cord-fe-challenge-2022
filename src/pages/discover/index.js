@@ -17,6 +17,7 @@ import SearchBar from "../../components/searchbar";
 import NoInternet from "../../components/noInternt";
 import Loading from "../../components/newLoader";
 import FetcherContext from "../../Context/FetcherContext";
+import Paginate from "../../components/pagination";
 const ExpandableFilter = React.lazy(() => import('../../components/accordionfilter'))
 
 export default class Discover extends React.Component {
@@ -52,6 +53,11 @@ export default class Discover extends React.Component {
       loading: false,
       noKeyword: false,
       showFilters: false,
+      currentPage: 1,
+      List: false,
+      metaPage: false,
+      metaPages: false,
+
     }
 
   }
@@ -69,21 +75,25 @@ export default class Discover extends React.Component {
       loading: true,
     })
 
-    const server_response = await fetcher.getpopularMovies();
+    const server_response = await fetcher.getpopularMovies(this.state.currentPage);
 
     if (server_response.status === 200) {
       this.setState({
         loading: false,
         results: server_response.data.results,
-        totalCount: server_response.data.total_results
+        totalCount: server_response.data.total_results,
+        metaPage: server_response.data.page,
+        metaPages: server_response.data.total_pages
       })
     } else {
       this.setState({
         info: <NoInternet noInternet={noInternet} message={server_response.details.message} />,
-        loading: false
+        loading: false,
+        metaPage: false
       })
     }
   }
+
 
   /*
   * RETRUNS SEARCHED MOVIES
@@ -174,6 +184,47 @@ export default class Discover extends React.Component {
     })
   }
 
+  onClickPage = (page) => {
+    this.setState({
+      currentPage: page,
+      List: false
+    }, () => this.loadPopularMovies())
+  }
+
+  onClickNext = () => {
+    //increment page numbers
+    const metaPage = this.state.metaPage;
+    const metaPages = this.state.metaPages;
+
+    if (metaPage * 1 + 1 <= metaPages * 1) {
+      this.setState({
+        currentPage: this.state.currentPage + 1,
+        List: false
+
+      }, () => {
+        this.loadPopularMovies();
+      })
+    }
+
+  }
+
+  onClickPrevious = () => {
+    const metaPage = this.state.metaPage;
+    if (metaPage * 1 > 1) {
+      this.setState({
+        currentPage: this.state.currentPage - 1,
+        List: false
+      }, () => {
+        this.loadPopularMovies();
+      })
+    }
+
+  }
+
+
+
+
+
 
 
 
@@ -244,7 +295,7 @@ export default class Discover extends React.Component {
 
         {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
 
-        {!this.state.loading ? <TotalCount>{totalCount.toLocaleString()} movies</TotalCount> : ""}
+
         {this.state.loading && <Loading />}
         <MovieFilters>
           {this.state.noKeyword && <FormError>Keyword is required for search</FormError>}
@@ -260,6 +311,23 @@ export default class Discover extends React.Component {
         </MovieFilters>
 
         <MovieResults>
+
+          <PopularHeader>
+
+            {!this.state.loading ? <>
+              <TotalCount>{totalCount.toLocaleString()} movies</TotalCount>
+
+              <Paginate
+                currentPage={this.state.currentPage}
+                onClickPrevious={this.onClickPrevious}
+                onClickNext={this.onClickNext}
+                metaPages={this.state.metaPages}
+                metaPage={this.state.metaPage}
+              />
+            </> : ""}
+
+          </PopularHeader>
+
           {!this.state.loading && this.state.info}
 
           <MovieList
@@ -267,6 +335,14 @@ export default class Discover extends React.Component {
             genres={genreOptions || []}
           />
         </MovieResults>
+
+        <Paginate
+          currentPage={this.state.currentPage}
+          onClickPrevious={this.onClickPrevious}
+          onClickNext={this.onClickNext}
+          metaPages={this.state.metaPages}
+          metaPage={this.state.metaPage}
+        />
       </DiscoverWrapper>
     )
   }
@@ -279,6 +355,12 @@ const DiscoverWrapper = styled.main`
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     padding: 0 25px;
   }
+`
+
+const PopularHeader = styled.div`
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
 `
 
 const MovieResults = styled.div`
@@ -299,7 +381,7 @@ const MovieResults = styled.div`
 const MovieFilters = styled.div`
   width: 380px;
   float: right;
-  margin-top: 15px;
+  // margin-top: 15px;
   margin-right: 35px;
   position: fixed;
   right: 0;

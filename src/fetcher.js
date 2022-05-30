@@ -9,10 +9,9 @@ const apiKey = "dae1bc94f2be7c7a6e80f5ca557ae55f";
 
 /** AXIOS REQUEST TO FETCH ALL POPULAR 
 MOVIES FROM THE MOVIESDB API */ 
-export const getpopularMovies = async () => {
+export const getpopularMovies = async (pageNumber) => {
 
     const endPoint = "/movie/popular"
-    const pageNumber = 1;
 
     try {
         let response = await axios.get(

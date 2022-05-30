@@ -12,6 +12,8 @@ cord-fe-challenge-2022 is a mini movie application that shows most popular movie
  
 This is a mini web application that enables a user to view most popular movies with some details of the movie displayed, and search any movie based on movie title and year.
 
+![](mainCord.gif)
+
 ![](cord.gif)
  
  

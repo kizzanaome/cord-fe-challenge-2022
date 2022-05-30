@@ -1,7 +1,7 @@
 // import React from 'react';
 import MobileHeader from '../pages/discover/index';
 import MobilePageTitle from '../pages/discover/index';
-import Discover from '../pages/discover'
+
 
 import { render, screen, clean } from '@testing-library/react';
 
