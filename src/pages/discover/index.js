@@ -18,7 +18,7 @@ import NoInternet from "../../components/noInternt";
 import Loading from "../../components/newLoader";
 import FetcherContext from "../../Context/FetcherContext";
 import Paginate from "../../components/pagination";
-const ExpandableFilter = React.lazy(() => import('../../components/accordionfilter'))
+import ExpandableFilter from "../../components/accordionfilter"
 
 export default class Discover extends React.Component {
 
@@ -276,12 +276,11 @@ export default class Discover extends React.Component {
               <CategoryTitle>Movies</CategoryTitle>
 
               {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
-              <Suspense fallback={<div>Loading...</div>}>
-                <ExpandableFilter
-                  title="Select genre(s)"
-                  genres={genreOptions}
-                />
-              </Suspense>
+              <ExpandableFilter
+                title="Select genre(s)"
+                genres={genreOptions}
+              />
+
               <ExpandableFilter
                 title="Select min. vote"
                 genres=""
