@@ -317,13 +317,13 @@ export default class Discover extends React.Component {
             {!this.state.loading ? <>
               <TotalCount>{totalCount.toLocaleString()} movies</TotalCount>
 
-              <Paginate
+              {!this.state.info && <Paginate
                 currentPage={this.state.currentPage}
                 onClickPrevious={this.onClickPrevious}
                 onClickNext={this.onClickNext}
                 metaPages={this.state.metaPages}
                 metaPage={this.state.metaPage}
-              />
+              />}
             </> : ""}
 
           </PopularHeader>
@@ -336,13 +336,13 @@ export default class Discover extends React.Component {
           />
         </MovieResults>
 
-        <Paginate
+        {!this.state.info && <Paginate
           currentPage={this.state.currentPage}
           onClickPrevious={this.onClickPrevious}
           onClickNext={this.onClickNext}
           metaPages={this.state.metaPages}
           metaPage={this.state.metaPage}
-        />
+        />}
       </DiscoverWrapper>
     )
   }

@@ -7,8 +7,8 @@ import * as colors from "../colors";
 export default function Loading() {
     return (
         <Load>
-            Loading data...
-            <span className="skeleton-loader-background"> </span>
+            Loading data....
+            {/* <span className="skeleton-loader-background"> </span> */}
         </Load>
     )
 
@@ -20,8 +20,8 @@ const Load = styled.div`
     justify-content: start;
     align-items: center;
     width: 100%;
-    font-weight:200;
-    font-size:13.5px;
+    font-weight:400;
+    font-size:15px;
     margin-top:3px;
 
     .skeleton-loader-background {
