@@ -21,6 +21,7 @@ export default function SearchFilters({ genres, ratings, languages, onSearch, on
           placeholder="Search for movies"
           onChange={onSearch}
         />
+
         <SearchBar
           id="year_search_input"
           type="number"
@@ -73,3 +74,7 @@ const SearchFiltersCont = styled.div`
 const CategoryTitle = styled.h3`
   margin: 0 0 15px 0;
 `
+
+
+
+

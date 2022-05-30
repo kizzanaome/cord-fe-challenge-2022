@@ -43,25 +43,25 @@ describe('fetchData', () => {
     /**
      * TEST THE SEARCH API ENPOINT
      */
-    // it('fetches searched data successfully from an API', async (keyword, year) => {
-    //     const endPoint = "/search/movie"
-    //     const pageNumber = 1;
-    //     // const keyword = "Bad";
-    //     // const year = "2020";
-    //     const data = { data: { hits: [{ objectID: '1', title: 'a', }, { objectID: '2', title: 'b', },], }, };
+    it('fetches searched data successfully from an API', async (keyword, year) => {
+        const endPoint = "/search/movie"
+        const pageNumber = 1;
+        // const keyword = "Bad";
+        // const year = "2020";
+        const data = { data: { hits: [{ objectID: '1', title: 'a', }, { objectID: '2', title: 'b', },], }, };
 
-    //     axios.get.mockImplementationOnce(() => Promise.resolve(data));
-    //     await expect(fetcher.searchAllMovies()).resolves.toEqual(data);
+        axios.get.mockImplementationOnce(() => Promise.resolve(data));
+        await expect(fetcher.searchAllMovies()).resolves.toEqual(data);
 
-    //     expect(axios.get).toHaveBeenCalledWith(
-    //         `${baseUrl}` + `${endPoint}` + "?api_key=" + `${apiKey}` + "&language=en-US&query=" + keyword + "&page=" + `${pageNumber}` + year
-    //     );
-    // });
+        expect(axios.get).toHaveBeenCalledWith(
+            `${baseUrl}` + `${endPoint}` + "?api_key=" + `${apiKey}` + "&language=en-US&query=" + keyword + "&page=" + `${pageNumber}` + year
+        );
+    });
 
-    // it('fetches erroneously data from an API', async () => {
-    //     const errorMessage = { "details": { "content": false, "message": "Oops!!! Failed to reach the server. Please check your internet connection!" }, "status": "conn" };
-    //     axios.get.mockImplementationOnce(() => Promise.reject(new Error(errorMessage)),);
-    //     await expect(fetcher.getpopularMovies()).rejects.toThrow(errorMessage);
-    // });
-    
+    it('fetches erroneously data from an API', async () => {
+        const errorMessage = { "details": { "content": false, "message": "Oops!!! Failed to reach the server. Please check your internet connection!" }, "status": "conn" };
+        axios.get.mockImplementationOnce(() => Promise.reject(new Error(errorMessage)),);
+        await expect(fetcher.getpopularMovies()).rejects.toThrow(errorMessage);
+    });
+
 });

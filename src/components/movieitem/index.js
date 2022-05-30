@@ -123,14 +123,14 @@ const LeftCont = styled.div`
   display: inline-block;
   margin-right: 20px;
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     img{
       width:100px;
     }
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     img{
       width:120px;
@@ -154,14 +154,14 @@ const Title = styled.h2`
   font-size: 1.4;
   margin: 0;
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     font-size: 18px;
     font-weight: 900;
     color:black;
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     font-size: 20px;
     font-weight: 900;
@@ -182,14 +182,14 @@ const Rating = styled.div`
   border-radius: 3px;
   background-color: ${color.primaryColor};
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     width: 30px;
     height: 18px;
     font-size: 15px;
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     width: 33px;
     height: 21px;
@@ -211,7 +211,7 @@ const Genre = styled.div`
     }
   }
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     width: 150px;
     overflow-x: scroll;
@@ -235,7 +235,7 @@ const Genre = styled.div`
     }
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     width: 200px;
     overflow-x: scroll;
@@ -263,7 +263,7 @@ const Genre = styled.div`
 const MobileDescription = styled.p`
   display : none;
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display:block;
     font-size: 12px;
@@ -288,14 +288,14 @@ const Description = styled.p`
     margin-left:3px;
   }
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: none;
     font-size: 12px;
     color:${color.fontColor};
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     display:block;
     font-size: 13px;
@@ -309,12 +309,12 @@ const Date = styled.p`
   margin: 0px;
   color: ${color.primaryColor};
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     font-size: 11px;
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     font-size: 12px;
   }

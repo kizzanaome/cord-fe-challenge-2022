@@ -1,7 +1,7 @@
 import React from 'react';
 import MobileHeader from '../pages/discover/index';
 import MobilePageTitle from '../pages/discover/index';
-// import Enzyme from 'enzyme';
+
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 import { shallow, configure, mount } from 'enzyme';
@@ -11,8 +11,19 @@ import renderer from 'react-test-renderer';
 // import 'jest-styled-components';
 
 import Discover from '../pages/discover'
+import *  as discover from '../pages/discover'
 
-configure({ adapter: new Adapter() });
+
+
+// const mockGetPopularMovies = jest.spyOn(discover, 'loadPopularMovies')
+
+
+
+// describe("testing methonds", () => {
+//     afterEach(() => {
+//         jest.resetAllMocks();
+//     });
+// })
 
 // jest.mock('axios', () => {
 //     return {
@@ -21,6 +32,7 @@ configure({ adapter: new Adapter() });
 //     }
 // });
 
+configure({ adapter: new Adapter() });
 
 describe("renders the discover UI correctly", () => {
 
@@ -31,14 +43,14 @@ describe("renders the discover UI correctly", () => {
 
     })
 
-    // it("renders mobile header correctly", () => {
-    //     const tree = renderer.create(
-    //         <MobileHeader>
-    //             <MobilePageTitle>Discover</MobilePageTitle>
-    //         </MobileHeader>
-    //     ).toJSON();
-    //     expect(tree).toMatchSnapshot();
-    // })
+    it("renders mobile header correctly", () => {
+        const tree = renderer.create(
+            <MobileHeader>
+                <MobilePageTitle>Discover</MobilePageTitle>
+            </MobileHeader>
+        ).toJSON();
+        expect(tree).toMatchSnapshot();
+    })
 
     it("renders mobile title correctly", () => {
         const component = <MobilePageTitle>Discover</MobilePageTitle>
@@ -46,32 +58,20 @@ describe("renders the discover UI correctly", () => {
         expect(tree).toMatchSnapshot();
     })
 
-    
 
-    // test("render the discover ui", () => {
-    //     console.log(wrapper.find("div"));
-    //     expect(wrapper.find("div").text()).toContain("Discover")
-    // })
+    it('should handle error data', (done) => {
+        const axios = require('axios');
+        jest.spyOn(axios, 'default').mockRejectedValue()
+        const wrapper = shallow(<Discover />, {
+            disableLifecycleMethods: false
+        });
 
-    // test("expect wrapper  ", () => {
-    //     // console.log(wrapper.debug());
-
-    //     expect(wrapper.find("p").text()).toBe("Discover")
-    // })
-
-    // it('should handle error data', (done) => {
-    //     const axios = require('axios');
-    //     jest.spyOn(axios, 'default').mockRejectedValue()
-    //     const wrapper = shallow(<Discover />, {
-    //         disableLifecycleMethods: false
-    //     });
-
-    //     // console.log(wrapper.instance())
-    //     // console.log(wrapper.state())
-    //     wrapper.instance().loadPopularMovies();
-    //     process.nextTick(() => {
-    //         expect(wrapper.state('loading')).toBeTruthy();
-    //         done();
-    //     })
-    // })
+        // console.log(wrapper.instance())
+        // console.log(wrapper.state())
+        wrapper.instance().loadPopularMovies();
+        process.nextTick(() => {
+            expect(wrapper.state('loading')).toBeTruthy();
+            done();
+        })
+    })
 })

@@ -41,6 +41,7 @@ export default class Discover extends React.Component {
       backUpCount: "0",
       info: "",
       loading: "",
+      noKeyword: false
 
     }
 
@@ -109,8 +110,6 @@ export default class Discover extends React.Component {
 
   // ONCHANGE QUERY TO SEARCH FOR A MOVIE
   onChangeSearch = (value, id) => {
-    console.log(value)
-    console.log("value serch")
     if (this.state.backUpResults.length === 0) {
       this.setState({
         backUpResults: this.state.results,
@@ -119,13 +118,17 @@ export default class Discover extends React.Component {
     }
     if (value.length > 0) {
       this.setState({
+        noKeyword: false,
         keyword: value
       }, () => this.searchMovies(value, this.state.year));
     } else {
+
       this.setState({
         results: this.state.backUpResults,
-        totalCount: this.state.backUpCount
+        totalCount: this.state.backUpCount,
+        keyword: ""
       })
+
     }
 
   }
@@ -138,19 +141,32 @@ export default class Discover extends React.Component {
         backUpCount: this.state.totalCount
       })
     }
-    if (value.length > 0) {
-      if (value.length === 4) {
+    if (this.state.keyword) {
+      this.setState({
+        noKeyword: false
+      })
+
+      if (value.length > 0) {
+        if (value.length === 4) {
+          this.setState({
+            year: value
+          }, () => this.searchMovies(this.state.keyword, value));
+        }
+      } else {
         this.setState({
-          year: value
-        }, () => this.searchMovies(this.state.keyword, value));
+          results: this.state.backUpResults,
+          totalCount: this.state.backUpCount
+        })
       }
+
     } else {
       this.setState({
-        results: this.state.backUpResults,
-        totalCount: this.state.backUpCount
+        noKeyword: true,
       })
+
     }
   }
+
 
 
 
@@ -165,10 +181,6 @@ export default class Discover extends React.Component {
     return (
       <DiscoverWrapper>
         <MobileHeader>
-          {/* <HamburgerMenu onClick={() => this.openNavBar()}>
-            <img src={menu} alt="menu" />
-          </HamburgerMenu> */}
-
           <MobilePageTitle>Discover</MobilePageTitle>
         </MobileHeader>
 
@@ -182,7 +194,7 @@ export default class Discover extends React.Component {
           />
 
           <div className="filterIcon">
-            <img src={filter} alt="menu"/>
+            <img src={filter} alt="menu" />
           </div>
         </MobileSearchSection>
 
@@ -190,6 +202,7 @@ export default class Discover extends React.Component {
 
         <TotalCount>{totalCount.toLocaleString()} movies</TotalCount>
         <MovieFilters>
+          {this.state.noKeyword && <FormError>Search for movies is required</FormError>}
           <SearchFilters
             genres={genreOptions}
             ratings={ratingOptions}
@@ -197,6 +210,7 @@ export default class Discover extends React.Component {
             searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
             onSearch={this.onChangeSearch}
             onSearchDate={this.onSearchDate}
+            keyword={this.state.keyword ? true : false}
           />
         </MovieFilters>
 
@@ -216,7 +230,7 @@ export default class Discover extends React.Component {
 const DiscoverWrapper = styled.main`
   padding: 35px;
 
-  // /* --- smartphone and tablet responsiveness --- */
+  /* --- smartphone and tablet responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     padding: 0 25px;
   }
@@ -226,12 +240,12 @@ const MovieResults = styled.div`
   display: inline-block;
   width: calc(100% - 395px);
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     width: 100%;
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     width: calc(100% - 295px);
   }
@@ -245,12 +259,12 @@ const MovieFilters = styled.div`
   position: fixed;
   right: 0;
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: none;
   }
 
-  // /* --- tablet responsiveness --- */
+  /* --- tablet responsiveness --- */
   @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
     width: 280px;
   }
@@ -266,7 +280,7 @@ const MobileHeader = styled.div`
 const MobilePageTitle = styled.h1`
   display: none;
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
     display: block;
     margin-left:60px;
@@ -278,7 +292,7 @@ const MobilePageTitle = styled.h1`
 const MobileSearchSection = styled.div`
   display: none;
 
-  // /* --- smartphone responsiveness --- */
+  /* --- smartphone responsiveness --- */
   @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
     display: flex;
     margin: 7px 0 45px 0;
@@ -303,4 +317,9 @@ const TotalCount = styled.strong`
   font-size:13.5px;
   
 `;
+
+const FormError = styled.span`
+  color: #FF0000;
+
+`
 
