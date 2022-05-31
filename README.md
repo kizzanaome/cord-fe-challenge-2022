@@ -14,9 +14,6 @@ This is a mini web application that enables a user to view most popular movies w
 
 ![](mainCord.gif)
 
-![](cord.gif)
- 
- 
 ### Features
  
 - A user can view all popular movies.
@@ -24,6 +21,9 @@ This is a mini web application that enables a user to view most popular movies w
 - A user can view the application on all kinds of devices and browsers.
 - A user can view all Genres
 - A user can view movies with their Genres
+
+
+![](cord.gif)
  
 ### Tasks accomplished
  

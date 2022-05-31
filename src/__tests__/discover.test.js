@@ -59,12 +59,4 @@ describe("renders the discover UI correctly", () => {
     })
 
 
-
-
-
-
-
-
-
-
 })
