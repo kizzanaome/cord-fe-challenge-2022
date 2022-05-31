@@ -8,7 +8,7 @@ export default function Paginate({ currentPage, onClickPrevious, onClickNext, me
         <>
             {
                 metaPage &&
-                <Pagination >
+                <Pagination>
                     <ul>
                         <li className={`page-item ${currentPage === 1 && "disabled"}`}>
                             <span
@@ -18,7 +18,7 @@ export default function Paginate({ currentPage, onClickPrevious, onClickNext, me
                                 aria-disabled={currentPage === 1 ? false : true}
                                 onClick={onClickPrevious}
                             >
-                                <li>Previous</li>
+                                Previous
                             </span>
                         </li>
 
@@ -26,9 +26,10 @@ export default function Paginate({ currentPage, onClickPrevious, onClickNext, me
                             <span
                                 className="page-link"
                                 href="#"
+                                
                                 onClick={onClickNext}
                             >
-                                <li>Next</li>
+                                Next
                             </span>
                         </li>
                     </ul>

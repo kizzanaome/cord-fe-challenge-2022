@@ -8,7 +8,7 @@ const apiKey = "dae1bc94f2be7c7a6e80f5ca557ae55f";
 
 
 /** AXIOS REQUEST TO FETCH ALL POPULAR 
-MOVIES FROM THE MOVIESDB API */ 
+MOVIES FROM THE MOVIESDB API */
 export const getpopularMovies = async (pageNumber) => {
 
     const endPoint = "/movie/popular"
@@ -35,7 +35,7 @@ export const getpopularMovies = async (pageNumber) => {
 }
 
 /**API REQUEST TO FETCH ALL GENRES
- FROM THE MOVIESDB API */ 
+ FROM THE MOVIESDB API */
 export const getAllGenres = async () => {
 
     const endPoint = "/genre/movie/list"
@@ -60,7 +60,7 @@ export const getAllGenres = async () => {
 }
 
 /** API REQUEST TO SEARCH
- FROM THE MOVIESDB API*/ 
+ FROM THE MOVIESDB API*/
 export const searchAllMovies = async (keyword, year) => {
     const endPoint = "/search/movie"
     const pageNumber = 1;
