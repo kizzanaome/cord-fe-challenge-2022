@@ -6,7 +6,7 @@ cord-fe-challenge-2022 is a mini movie application that shows most popular movie
  
 #### Hosted link at
  
-<img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white "/>  [www.cord-fe-challenge-2022.com](https://cord-fe-challenge-2022.netlify.app/discover)
+[www.cord-fe-challenge-2022.com](https://cord-fe-challenge-2022.netlify.app/discover)
  
 ### Introduction
  
@@ -56,10 +56,10 @@ This is a mini web application that enables a user to view most popular movies w
 - Error handling in the axios functionality to cater for any errors
 - Dropdown the search filter component when on mobile or mini tablet to improve userability
 - Add scroll effect on the genre filter and the genres of each movie
-- Add lazy loading on fetched data to help
 - add a few tests to test the UI components of the app and the axios API requests
 - Host the app on netlify for easy accessibility
 - Added gif to read me.
+- Add Pagination on the discover page.
  
 ### Technologies used
  
