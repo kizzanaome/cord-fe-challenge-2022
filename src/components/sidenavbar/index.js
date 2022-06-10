@@ -62,7 +62,7 @@ const SideNavBarCont = styled.div`
   color: white;
 
   /* --- smartphone and tablet responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 270px) and (max-width: 1439px) {
     visibility: hidden;
   }
 `;
@@ -94,7 +94,7 @@ const SideNavHeader = styled.div`
   ${SectionsStyles}
 
   /* --- smartphone and tablet responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 270px) and (max-width: 1439px) {
     margin-top: 25px;
   }
 `;
@@ -141,7 +141,7 @@ const HamburgerMenu = styled.div`
   }
 
   /* --- smartphone and tablet responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 270px) and (max-width: 1439px) {
     display: block;
     position: absolute;
     margin: 25px 0 0 25px;
@@ -181,7 +181,7 @@ const CloseMenu = styled.div`
   }
 
   /* --- smartphone and tablet responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 270px) and (max-width: 1439px) {
     display: block;
     position: absolute;
     z-index: 5;

@@ -26,11 +26,42 @@ export default function MovieItem({ movie, genres }) {
           <Rating>{movie.vote_average}</Rating>
         </Header>
         <Genre>
+
           <div
             className={`${movie.genre_ids.length > 3 ? 'scrollEnable' : movie.genre_ids.length > 5 ? 'scrollerEnable' : ''
               }`}
           >
-            {genres.map(genre =>
+            {movie.genre_ids.map((genre_id, key) =>
+
+              genres.map((genre, genrekey) => {
+                // <>
+                return (
+                  <>
+                    {
+                      genre.id === genre_id &&
+                      <>
+                        {key !== (movie.genre_ids.length - 1)
+                          ?
+                          <>
+                            <p key={genre_id}> {genre.name}   |  </p>
+
+                          </>
+                          :
+                          <p key={genre_id}> {genre.name}  </p>
+                        }
+                      </>
+                    }
+                  </>
+                )
+              }
+                // {/* </> */ }
+              )
+            )}
+
+            {/* 
+            {genres.map(genre => {
+              console.log(genres)
+              console.log(movie.genre_ids)
               movie.genre_ids.map((genre_id, key) =>
                 <>
                   {genre.id === genre_id &&
@@ -49,7 +80,8 @@ export default function MovieItem({ movie, genres }) {
                   }
                 </>
               )
-            )}
+            }
+            )} */}
           </div>
         </Genre>
         <Description>
@@ -124,14 +156,14 @@ const LeftCont = styled.div`
   margin-right: 20px;
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     img{
       width:100px;
     }
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     img{
       width:120px;
     }
@@ -155,14 +187,14 @@ const Title = styled.h2`
   margin: 0;
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     font-size: 18px;
     font-weight: 900;
     color:black;
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     font-size: 20px;
     font-weight: 900;
     color:black;
@@ -183,14 +215,14 @@ const Rating = styled.div`
   background-color: ${color.primaryColor};
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     width: 30px;
     height: 18px;
     font-size: 15px;
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     width: 33px;
     height: 21px;
     font-size: 17px;
@@ -212,7 +244,7 @@ const Genre = styled.div`
   }
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     width: 150px;
     overflow-x: scroll;
     font-size: 9px;
@@ -236,7 +268,7 @@ const Genre = styled.div`
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     width: 200px;
     overflow-x: scroll;
     font-size: 12px;
@@ -264,7 +296,7 @@ const MobileDescription = styled.p`
   display : none;
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     display:block;
     font-size: 12px;
     color:${color.fontColor};
@@ -289,14 +321,14 @@ const Description = styled.p`
   }
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     display: none;
     font-size: 12px;
     color:${color.fontColor};
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     display:block;
     font-size: 13px;
     color:${color.fontColor};
@@ -310,12 +342,12 @@ const Date = styled.p`
   color: ${color.primaryColor};
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     font-size: 11px;
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     font-size: 12px;
   }
 `;

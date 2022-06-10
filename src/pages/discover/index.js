@@ -352,7 +352,7 @@ const DiscoverWrapper = styled.main`
   padding: 35px;
 
   /* --- smartphone and tablet responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 270px) and (max-width: 1439px) {
     padding: 0 25px;
   }
 `
@@ -368,12 +368,12 @@ const MovieResults = styled.div`
   width: calc(100% - 395px);
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     width: 100%;
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     width: calc(100% - 295px);
   }
 `
@@ -387,12 +387,12 @@ const MovieFilters = styled.div`
   right: 0;
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     display: none;
   }
 
   /* --- tablet responsiveness --- */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 768px) and (max-width: 1439px) {
     width: 280px;
   }
 `
@@ -408,7 +408,7 @@ const MobilePageTitle = styled.h1`
   display: none;
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 270px) and (max-width: 1439px) {
     display: block;
     margin-left:60px;
     font-size: 30px;
@@ -420,7 +420,7 @@ const MobileSearchSection = styled.div`
   display: none;
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     display: flex;
     margin: 7px 0 15px 0;
     justify-content: space-between;
@@ -442,7 +442,7 @@ const MobileSearchFilterSection = styled.div`
   display: none;
 
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -466,7 +466,7 @@ const TotalCount = styled.strong`
   font-size:13.5px;
   
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 767px) {
+  @media only screen and (min-width: 270px) and (max-width: 767px) {
     margin: 37px 0 0 0;
   }
 `;
@@ -486,7 +486,7 @@ const SearchFiltersCont = styled.div`
 
 const CategoryTitle = styled.h3`
   /* --- smartphone responsiveness --- */
-  @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+  @media only screen and (min-width: 270px) and (max-width: 1439px) {
     margin: 0 0 15px 0;
     font-size: 20px;
     font-weight: 600;

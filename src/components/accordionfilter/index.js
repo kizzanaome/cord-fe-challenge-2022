@@ -45,7 +45,7 @@ const AccordionTitle = styled.div`
     transition: .3s;
 
     /* --- smartphone responsiveness --- */
-    @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+    @media only screen and (min-width: 270px) and (max-width: 1439px) {
         margin: 0 0 15px 0;
         font-size: 17px;
         font-weight: medium;
@@ -57,7 +57,7 @@ const AccordionIndicator = styled.div`
     margin: 0 10px 0 0;
 
     /* --- smartphone responsiveness --- */
-    @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+    @media only screen and (min-width: 270px) and (max-width: 1439px) {
         font-size: 20px;
     }
 `;
@@ -91,7 +91,7 @@ const Checkbox = styled.div`
     }
 
     /* --- smartphone responsiveness --- */
-    @media only screen and (min-device-width: 270px) and (max-device-width: 1439px) {
+    @media only screen and (min-width: 270px) and (max-width: 1439px) {
         margin: 0 0 15px 0;
         font-size: 17px;
         font-weight: medium;
