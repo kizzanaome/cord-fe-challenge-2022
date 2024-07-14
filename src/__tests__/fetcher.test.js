@@ -30,7 +30,7 @@ describe('Test All API requests', () => {
 
         const movies = await fetcher.getpopularMovies(pageNumber);
 
-
+        console.log(movies)
         expect(movies).toEqual(popular_movies);
         expect(mockAxios.get).toHaveBeenCalledTimes(1)
         expect(mockAxios.get).toHaveBeenCalledWith("https://api.themoviedb.org/3/movie/popular?api_key=dae1bc94f2be7c7a6e80f5ca557ae55f&language=en-US&page=1")
