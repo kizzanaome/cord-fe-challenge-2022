@@ -205,7 +205,7 @@ const Rating = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 37px;
+  width: 50px;
   height: 25px;
   color: #fff;
   padding: 3px;
