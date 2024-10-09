@@ -297,6 +297,7 @@ export default class Discover extends React.Component {
 
 
         {this.state.loading && <Loading />}
+        
         <MovieFilters>
           {this.state.noKeyword && <FormError>Keyword is required for search</FormError>}
           <SearchFilters

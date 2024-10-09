@@ -21,6 +21,10 @@ export default class App extends React.Component {
               <Switch>
                 <Route path="/" component={Discover} {...this.props} />
                 <Route path="/discover" component={Discover} {...this.props} />
+                <Route path="/watched/movies" component={Discover} {...this.props} />
+                <Route path="/watched/tv-shows" component={Discover} {...this.props} />
+                <Route path="/saved/movies" component={Discover} {...this.props} />
+                <Route path="/saved/tv-shows" component={Discover} {...this.props} />
               </Switch>
             </ContentWrapper>
           </PageContainer>
