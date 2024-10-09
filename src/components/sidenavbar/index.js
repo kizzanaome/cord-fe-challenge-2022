@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { NavLink as Link } from "react-router-dom";
 
 import * as colors from "../../colors";
-import Arrow from "../../images/arrow-icon.png";
+// import Arrow from "../../images/arrow-icon.png";
 import SearchWhite from "../../images/search-icon-white.png";
 
 import menu from "../../images/menu.png"
@@ -35,8 +35,8 @@ export default function SideNavBar() {
         {/* TODO: Implement a hamburger icon that controls the open state of the sidebar. This control should only be visible on mobile devices via CSS media queries */}
         {/* The sidebar should slide in from left */}
         <SideNavHeader>
-          NomaEnt
-          <img src={Arrow} alt="Arrow pointing down" />
+          NomaMovies
+          {/* <img src={Arrow} alt="Arrow pointing down" /> */}
         </SideNavHeader>
         <SideNavMainLink to="/discover" exact>
           Discover

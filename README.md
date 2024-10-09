@@ -1,12 +1,12 @@
-# cord Coding Challenge (Front-end)
+# naume Coding Challenge (Front-end)
  
-cord-fe-challenge-2022 is a mini movie application that shows most popular movies.
+naume-fe-challenge-2022 is a mini movie application that shows most popular movies.
  
 [![Netlify Status](https://api.netlify.com/api/v1/badges/843d8551-2064-453d-b340-0b56f14a4ad5/deploy-status)](https://app.netlify.com/sites/idyllic-crostata-e3b5be/deploys)
  
 #### Hosted link at
  
-[www.cord-fe-challenge-2022.com](https://cord-fe-challenge-2022.netlify.app/discover)
+[www.naume-fe-challenge-2022.com](https://naume-fe-challenge-2022.netlify.app/discover)
  
 ### Introduction
  
@@ -23,7 +23,7 @@ This is a mini web application that enables a user to view most popular movies w
 - A user can view movies with their Genres
 
 
-![](cord.gif)
+<!-- ![](cord.gif) -->
  
 ### Tasks accomplished
  
