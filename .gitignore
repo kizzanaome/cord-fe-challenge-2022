@@ -1,4 +1,5 @@
 node_modules/
 README 2.md
 package-lock.json
+yarn.lock
 coverage/
