@@ -35,7 +35,7 @@ export default function SideNavBar() {
         {/* TODO: Implement a hamburger icon that controls the open state of the sidebar. This control should only be visible on mobile devices via CSS media queries */}
         {/* The sidebar should slide in from left */}
         <SideNavHeader>
-          Wesley
+          NomaEnt
           <img src={Arrow} alt="Arrow pointing down" />
         </SideNavHeader>
         <SideNavMainLink to="/discover" exact>

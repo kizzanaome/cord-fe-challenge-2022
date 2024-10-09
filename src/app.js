@@ -19,6 +19,7 @@ export default class App extends React.Component {
             <SideNavBar {...this.props} />
             <ContentWrapper>
               <Switch>
+                <Route path="/" component={Discover} {...this.props} />
                 <Route path="/discover" component={Discover} {...this.props} />
               </Switch>
             </ContentWrapper>

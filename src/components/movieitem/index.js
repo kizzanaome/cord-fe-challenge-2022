@@ -25,6 +25,7 @@ export default function MovieItem({ movie, genres }) {
           <Title>{movie.title}</Title>
           <Rating>{movie.vote_average}</Rating>
         </Header>
+
         <Genre>
 
           <div
@@ -84,6 +85,7 @@ export default function MovieItem({ movie, genres }) {
             )} */}
           </div>
         </Genre>
+
         <Description>
           {movie.overview.length > 370
             ?
@@ -110,6 +112,7 @@ export default function MovieItem({ movie, genres }) {
           }
 
         </Description>
+
         <MobileDescription>
           {movie.overview.length > 75
             ?
@@ -136,6 +139,7 @@ export default function MovieItem({ movie, genres }) {
             <span>{movie.overview}</span >
           }
         </MobileDescription>
+
         <Date>{movie.release_date}</Date>
       </RightCont>
     </MovieItemWrapper>
@@ -311,7 +315,7 @@ const MobileDescription = styled.p`
 `
 
 const Description = styled.p`
-  margin: 17px 0 0 0;
+  margin: 17px 0 35px 0;
   padding: 0;
 
   .readmore{
@@ -338,7 +342,7 @@ const Description = styled.p`
 const Date = styled.p`
   position: absolute;
   bottom: 0px;
-  margin: 0px;
+  margin: 50px 0 0;
   color: ${color.primaryColor};
 
   /* --- smartphone responsiveness --- */
